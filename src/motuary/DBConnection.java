@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
+
+/**
+ *
+ * @author Njihia
+ */
+
 public class DBConnection 
 {
     public String PROP_FILE = "initial.ini";

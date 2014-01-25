@@ -10,7 +10,7 @@ import javax.swing.JInternalFrame;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class FrmAdmission extends JInternalFrame{
 

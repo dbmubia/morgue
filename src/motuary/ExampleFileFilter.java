@@ -3,7 +3,7 @@ package motuary;
 /*
  * @(#)ExampleFileFilter.java	1.14 03/01/23
  * @version 1.14 01/23/03
- * @author Jeff Dinkins
+ * @author Njihia
  */
 import java.io.File;
 import java.util.Hashtable;

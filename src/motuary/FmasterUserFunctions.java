@@ -30,7 +30,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class FmasterUserFunctions extends JInternalFrame{
     

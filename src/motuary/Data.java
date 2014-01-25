@@ -1,7 +1,7 @@
 package motuary;
 
 /** 
- * @author kusno
+ * @author Njihia
  */
 
 import javax.swing.*;

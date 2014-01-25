@@ -6,7 +6,7 @@ package motuary;
 
 /**
  *
- * @author  Aladeen
+ * @author  Njihia
  */
 import java.io.BufferedReader;
 import java.io.IOException;

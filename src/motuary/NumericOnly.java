@@ -12,6 +12,12 @@ import javax.swing.border.*;
 import javax.swing.table.*;
 import javax.swing.text.*; 
 
+
+/**
+ *
+ * @author Njihia
+ */
+
 class NumericOnly extends DefaultCellEditor
     {
 	NumericOnly()

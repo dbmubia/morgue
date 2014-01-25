@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class coldRoom extends JInternalFrame{
     

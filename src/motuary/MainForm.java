@@ -13,8 +13,7 @@ import java.sql.Statement;
 import komponenMakeOver.FsetupBusiness;
 
 /**
- *
- * @author Kogie
+ * * @author Njihia
  */
 public class MainForm extends JFrame implements WindowListener{
     
@@ -23,7 +22,7 @@ public class MainForm extends JFrame implements WindowListener{
 	JDesktopPane Desk1 = new JDesktopPane();
   
 
-	JLabel StatusLabel = new JLabel("Copyright © 2014 by Kogie Kelvin. All Rights Reserved. Visit http://www.BranSoft.com",JLabel.CENTER);
+	JLabel StatusLabel = new JLabel("Copyright © 2014 by Jeremy Njihia. All Rights Reserved. Visit http://njihiajeremy.com",JLabel.CENTER);
         
         JLabel user=new JLabel("USER",JLabel.LEFT);
 	JLabel BusinessTitleLabel = new JLabel();
@@ -51,6 +50,7 @@ public class MainForm extends JFrame implements WindowListener{
         backup FormBackup;
         coldRoom FormColdRoom;
         FsetupBusiness FormBussinessSetup;
+        postmotermrequest requestpm;
         
 	public MainForm(){
 		//Set the main form title
@@ -350,7 +350,20 @@ public class MainForm extends JFrame implements WindowListener{
                feedback.setBackground(new Color(255,255,255));
                NewJMenuBar.add(feedback);
                
-               
+                        JMenuItem feedbackk = new JMenuItem("Feedback");
+			feedbackk.setFont(new Font("Dialog", Font.PLAIN, 12));
+			feedbackk.setMnemonic('U');
+			feedbackk.setIcon(new ImageIcon("src/images/feedback16.png"));
+			feedbackk.setAccelerator(
+					KeyStroke.getKeyStroke(
+						KeyEvent.VK_L,ActionEvent.CTRL_MASK
+						)
+				);
+			feedbackk.setActionCommand("pmrequest");
+			feedbackk.addActionListener(JMenuActionListener);
+			feedbackk.setBackground(new Color(255,255,255));
+                
+                        feedback.add(feedbackk);
                
 
 		//Setup records menu
@@ -646,8 +659,10 @@ void checkUserAuthorization()
 
 	}
         
+    
         
-        	protected void loadUserFuntionForm() throws SQLException{
+        
+        protected void loadUserFuntionForm() throws SQLException{
 		//Verify if the form is already loaded
 		boolean AlreadyLoaded = isLoaded("User Function");
 		if(AlreadyLoaded==false){
@@ -674,7 +689,9 @@ void checkUserAuthorization()
 		//End verify if the form is already loaded
 
 	}
-              	protected void loadMasterUserForm() throws SQLException{
+                
+                
+       protected void loadMasterUserForm() throws SQLException{
 		//Verify if the form is already loaded
 		boolean AlreadyLoaded = isLoaded("Master User");
 		if(AlreadyLoaded==false){
@@ -701,6 +718,8 @@ void checkUserAuthorization()
 		//End verify if the form is already loaded
 
 	}
+                
+                
 
                 
                 
@@ -732,6 +751,8 @@ void checkUserAuthorization()
 
 	}
         
+        
+        
         protected void loadColdRoomForm() throws SQLException{
 		//Verify if the form is already loaded
 		boolean AlreadyLoaded = isLoaded("Cold Room");
@@ -759,8 +780,10 @@ void checkUserAuthorization()
 		//End verify if the form is already loaded
 
 	}
+        
+        
 
-protected void loadBusinessSetup() throws SQLException{
+        protected void loadBusinessSetup() throws SQLException{
 		//Verify if the form is already loaded
 		boolean AlreadyLoaded = isLoaded("Business Setup");
 		if(AlreadyLoaded==false){
@@ -780,6 +803,32 @@ protected void loadBusinessSetup() throws SQLException{
 			try{
 				FormBussinessSetup.setIcon(false);
 				FormBussinessSetup.setSelected(true);
+			}catch(PropertyVetoException e){
+			}
+		}
+}
+
+
+       protected void loadpostmoterm() throws SQLException{
+		//Verify if the form is already loaded
+		boolean AlreadyLoaded = isLoaded("Business Setup");
+		if(AlreadyLoaded==false){
+			requestpm = new postmotermrequest();
+			Desk1.add(requestpm);
+
+			//Load the FormCustomer
+			requestpm.setVisible(true);
+			requestpm.show();
+			try{
+				requestpm.setIcon(false);
+				requestpm.setSelected(true);
+			}catch(PropertyVetoException e){
+			}
+			//End load the FormCustomer
+		}else{
+			try{
+				requestpm.setIcon(false);
+				requestpm.setSelected(true);
 			}catch(PropertyVetoException e){
 			}
 		}
@@ -842,9 +891,21 @@ protected void loadBusinessSetup() throws SQLException{
                             }
                         
                         }
+                       else if(srcObject=="pmrequest"){
+                        
+                            try {
+                                
+                                loadpostmoterm();
+                            } catch (SQLException sqle) {
+                            }
+                        
+                        }
                         
 		}
 	};
+        
+        
+        
 	//End create action listener for JMenu
 
 	//Create action Listerner for JToolBar Button

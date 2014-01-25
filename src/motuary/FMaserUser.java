@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class FMaserUser extends JInternalFrame{
     

@@ -16,7 +16,9 @@ public class Motuary {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new  authentification().setVisible(true);// TODO code application logic here
+       new  authentification().setVisible(true);
+
+// TODO code application logic here
     }
     
 }
