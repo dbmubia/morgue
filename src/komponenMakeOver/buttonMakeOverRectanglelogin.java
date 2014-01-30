@@ -22,7 +22,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class buttonMakeOverRectanglelogin extends JButton{
     

@@ -13,7 +13,7 @@ import static javax.swing.SwingConstants.CENTER;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class textfieldColdroomMakeover extends JTextField{
 

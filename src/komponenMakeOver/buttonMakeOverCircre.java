@@ -20,7 +20,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class buttonMakeOverCircre extends JButton{
     

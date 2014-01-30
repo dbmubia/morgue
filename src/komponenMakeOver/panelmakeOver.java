@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author sad
+ * @author njihia
  */
 public class panelmakeOver extends JPanel{
 private Image gam;

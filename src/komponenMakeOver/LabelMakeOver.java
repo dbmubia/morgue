@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author Codesmith
+ * @author njihia
  */
 public class LabelMakeOver extends JLabel{
 

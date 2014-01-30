@@ -18,7 +18,7 @@ import static javax.swing.SwingConstants.CENTER;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class passwordMakeOver extends JPasswordField{
     

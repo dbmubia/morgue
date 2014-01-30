@@ -18,7 +18,7 @@ import javax.swing.JComboBox;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class comboboxMakeOver extends JComboBox<Object>{
   public boolean over;
@@ -35,6 +35,7 @@ public class comboboxMakeOver extends JComboBox<Object>{
         
      setOpaque(true);
      setBorder(null);
+     setEditable(true);
        
     }
     
@@ -44,7 +45,7 @@ public class comboboxMakeOver extends JComboBox<Object>{
         Graphics2D gr=(Graphics2D)g.create();
 
 
-          paint =new GradientPaint(0,0,new Color(1F,1F,1F,0.1F),0,getHeight(),new Color(1F,1F,1F,0.1F));
+          paint =new GradientPaint(0,0,new Color(1F,1F,1F,0.1F),0,getHeight(),new Color(1F,1F,0.F,0.1F));
           shape = new Rectangle2D.Double(getX(), getY(), getWidth(),getHeight());
 //
 

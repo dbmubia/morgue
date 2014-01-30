@@ -23,7 +23,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class PanelUserMakeover extends JPanel{
     

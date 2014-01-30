@@ -21,7 +21,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class FsetupBusiness extends JInternalFrame{
     

@@ -19,7 +19,7 @@ import javax.swing.text.Caret;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class textfieldMakeover extends JTextField{
     public boolean over;

@@ -10,7 +10,7 @@ import javax.swing.JInternalFrame;
 
 /**
  *
- * @author Codesmith
+ * @author Njihia
  */
 public class JinternalFrameMakeOver extends JInternalFrame{
     

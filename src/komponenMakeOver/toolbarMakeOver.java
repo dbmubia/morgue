@@ -20,7 +20,7 @@ import javax.swing.JToolBar;
 
 /**
  *
- * @author Aladeen
+ * @author Njihia
  */
 public class toolbarMakeOver extends JToolBar{
 

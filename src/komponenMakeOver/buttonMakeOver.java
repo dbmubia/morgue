@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author sad
+ * @author njihia
  */
 public class buttonMakeOver extends JButton{
     public boolean over;
