@@ -21,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import static motuary.backup.getBackUpPath;
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -72,6 +74,11 @@ public class postmotermrequest extends JInternalFrame {
      Dimension display=Toolkit.getDefaultToolkit().getScreenSize();
     
     public postmotermrequest(){
+        
+      BasicInternalFrameTitlePane titlePane =(BasicInternalFrameTitlePane) ((BasicInternalFrameUI) this .getUI()).  
+      getNorthPane();  
+      this.remove(titlePane);
+        
         
         initial();
         
@@ -254,7 +261,7 @@ public class postmotermrequest extends JInternalFrame {
     
     
     name_of_pathologist = new JLabel();
-    name_of_pathologist.setText("Name of Pathologist :");
+    name_of_pathologist.setText("Pathologist's Name :");
     name_of_pathologist.setForeground(new Color(186,190,198));
     name_of_pathologist.setFont(new Font("Lucida Sans", Font.BOLD, 16));
     name_of_pathologist.setBounds(10, 290, 200, 30);  
