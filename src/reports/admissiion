@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd1c12e3-40f7-478f-a2d1-dbdcb2ad2614">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     postmotermqueue.`admin_no` AS postmotermqueue_admin_no,
+     postmotermqueue.`requester_name` AS postmotermqueue_requester_name,
+     postmotermqueue.`requester_id` AS postmotermqueue_requester_id,
+     postmotermqueue.`requester_relation` AS postmotermqueue_requester_relation,
+     postmotermqueue.`requester_tel` AS postmotermqueue_requester_tel,
+     postmotermqueue.`auto_date` AS postmotermqueue_auto_date,
+     postmotermqueue.`autopsy_ time` AS postmotermqueue_autopsy__time,
+     postmotermqueue.`autopsy_nature` AS postmotermqueue_autopsy_nature,
+     postmotermqueue.`pathologist_name` AS postmotermqueue_pathologist_name,
+     postmotermqueue.`status` AS postmotermqueue_status
+FROM
+     `postmotermqueue` postmotermqueue]]>
+	</queryString>
+	<field name="postmotermqueue_admin_no" class="java.lang.Integer"/>
+	<field name="postmotermqueue_requester_name" class="java.lang.String"/>
+	<field name="postmotermqueue_requester_id" class="java.lang.String"/>
+	<field name="postmotermqueue_requester_relation" class="java.lang.String"/>
+	<field name="postmotermqueue_requester_tel" class="java.lang.Integer"/>
+	<field name="postmotermqueue_auto_date" class="java.lang.String"/>
+	<field name="postmotermqueue_autopsy__time" class="java.lang.String"/>
+	<field name="postmotermqueue_autopsy_nature" class="java.lang.String"/>
+	<field name="postmotermqueue_pathologist_name" class="java.lang.String"/>
+	<field name="postmotermqueue_status" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -27,6 +29,7 @@ public class FsetupBusiness extends JInternalFrame{
     
     private JLabel bussnesstitle;
     private JLabel location;
+    private  ActionListener funga;
     private JTextField bussines;
     private JTextField local;
     private JButton save;
@@ -127,6 +130,7 @@ public class FsetupBusiness extends JInternalFrame{
     
     exit=new komponenMakeOver.buttonMakeOverRectangle();
     exit.setText("exit");
+    exit.addActionListener(funga);
     exit.setForeground(new Color(186,190,198));
     exit.setIcon(new ImageIcon("src/images/exit.png"));
     exit.setBounds(400, 360, 130, 50);
@@ -153,4 +157,16 @@ public class FsetupBusiness extends JInternalFrame{
     
     
 }
+    
+public void actionPerformed(ActionEvent e){
+Object click = e.getSource();
+
+if (click==funga){
+        setVisible(false);
+        dispose();
+}
+
+
+}    
+    
 }

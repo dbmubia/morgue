@@ -27,7 +27,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -61,7 +60,7 @@ public class postmotermrequest extends JInternalFrame {
     private JTextField reqid_txt;
     private JTextField admin_nosearchtxt;
     private JTextField req_tel_txt;
-    private JXDatePicker autopsy_date_txt;
+    private org.jdesktop.swingx.JXDatePicker autopsy_date_txt;
     private JTextField auto_time;
     private JTextField pathologist_txt;
     private JComboBox nature_of_auto;
@@ -71,6 +70,7 @@ public class postmotermrequest extends JInternalFrame {
     private JButton searchbttn;
     private JButton hd;
     private JButton separator;
+    private Boolean soughtstate;
 
     Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -141,6 +141,7 @@ public class postmotermrequest extends JInternalFrame {
         //dname_txt.requestFocusInWindow();
         dname_txt.setForeground(new Color(186, 190, 198));
         dname_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        dname_txt.setEditable(false);
         dname_txt.setBounds(160, 100, 200, 30);
 
         admissionno = new JLabel();
@@ -153,6 +154,7 @@ public class postmotermrequest extends JInternalFrame {
         //dname_txt.requestFocusInWindow();
         admin_txt.setForeground(new Color(186, 190, 198));
         admin_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        admin_txt.setEditable(false);
         admin_txt.setBounds(470, 100, 100, 30);
 
         date_of_arrival = new JLabel();
@@ -215,6 +217,13 @@ public class postmotermrequest extends JInternalFrame {
         req_tel_txt.setForeground(new Color(186, 190, 198));
         req_tel_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         req_tel_txt.setBounds(160, 195, 200, 30);
+        req_tel_txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                nambatxtKeyTyped(e);
+            }
+
+        });
 
         autopsy_date = new JLabel();
         autopsy_date.setText("Autopsy Date:");
@@ -222,10 +231,11 @@ public class postmotermrequest extends JInternalFrame {
         autopsy_date.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         autopsy_date.setBounds(375, 195, 150, 30);
 
-        autopsy_date_txt = new komponenMakeOver.DateChooserMakeOverFinal();
+        autopsy_date_txt = new org.jdesktop.swingx.JXDatePicker();
         autopsy_date_txt.setForeground(new Color(186, 190, 198));
         autopsy_date_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         autopsy_date_txt.setBounds(560, 195, 200, 30);
+
 
         autopsy_time = new JLabel();
         autopsy_time.setText("Autopsy Time:");
@@ -262,19 +272,19 @@ public class postmotermrequest extends JInternalFrame {
         pathologist_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         pathologist_txt.setBounds(180, 290, 250, 30);
 
-        btnCancel = new komponenMakeOver.buttonMakeOverRectangle();
-        btnCancel.setText("Save");
-        btnCancel.setForeground(new Color(186, 190, 198));
-        btnCancel.setIcon(new ImageIcon("src/images/save16.png"));
-        btnCancel.setBounds(260, 370, 115, 32);
-        btnCancel.addActionListener(listener);
-
         savebttn = new komponenMakeOver.buttonMakeOverRectangle();
-        savebttn.setText("Cancel");
+        savebttn.setText("Save");
         savebttn.setForeground(new Color(186, 190, 198));
-        savebttn.setIcon(new ImageIcon("src/images/button_cancel.png"));
-        savebttn.setBounds(450, 370, 115, 32);
+        savebttn.setIcon(new ImageIcon("src/images/save16.png"));
+        savebttn.setBounds(260, 370, 115, 32);
         savebttn.addActionListener(listener);
+
+        btnCancel = new komponenMakeOver.buttonMakeOverRectangle();
+        btnCancel.setText("Cancel");
+        btnCancel.setForeground(new Color(186, 190, 198));
+        btnCancel.setIcon(new ImageIcon("src/images/button_cancel.png"));
+        btnCancel.setBounds(450, 370, 115, 32);
+        btnCancel.addActionListener(listener);
 
         holder = new komponenMakeOver.panelmakeOver();
         holder.setLayout(null);
@@ -317,16 +327,14 @@ public class postmotermrequest extends JInternalFrame {
         public void actionPerformed(ActionEvent e) {
 
             if (e.getSource() == btnCancel) {
-
                 cancel();
             } else if (e.getSource() == savebttn) {
-
-                cancel();
+                sendall();
+                
             } else if (e.getSource() == searchbttn) {
-
                 namba2db = admin_nosearchtxt.getText();
                 checkout(namba2db);
-
+               
             }
         }
 
@@ -367,15 +375,16 @@ public class postmotermrequest extends JInternalFrame {
                 dname_txt.setText(jina);
                 admin_txt.setText(namba);
                 doa_txt.setText(date);
+                soughtstate = true; 
             }
             if (count < 1) {
                 JOptionPane.showMessageDialog(null, "          record not found", "alert", JOptionPane.WARNING_MESSAGE, null);
                 clearall();
-            } else if (count >1) {
-                JOptionPane.showMessageDialog(null, "          record not found", "alert", JOptionPane.WARNING_MESSAGE, null);
+            } else if (count > 1) {
+                JOptionPane.showMessageDialog(null, "    There seems to be a duplicate record.", "alert", JOptionPane.WARNING_MESSAGE, null);
                 clearall();
             }
- 
+
             Data close = new Data();
             close.closingConnection(cn, st, rs);
             close = null;
@@ -389,20 +398,76 @@ public class postmotermrequest extends JInternalFrame {
         dname_txt.setText(null);
         admin_txt.setText(null);
         doa_txt.setText(null);
-    }
+        requester_txt.setText(null);
+        reqid_txt.setText(null);
+        reltion_txt.setText(null);
+        req_tel_txt.setText(null);
+        autopsy_date_txt.setDate(null);
+        auto_time.setText(null);
+        pathologist_txt.setText(null);
+   }
 
     private void sendall() {
 
+        ImageIcon tick = new ImageIcon("src/images/tick.png");
+
         String requesternme = requester_txt.getText();
+        String admin = admin_txt.getText();
         String requesterid = reqid_txt.getText();
         String relation = reltion_txt.getText();
         String requestertel = req_tel_txt.getText();
-        String autopsydate = autopsy_date_txt.getDate().toString();
+        String   autopsydate = autopsy_date_txt.getDate().toString();
+        
         String doatime = doa_txt.getText();
         String autotime = auto_time.getText();
         String pathologistname = pathologist_txt.getText();
+        String autopsytype = nature_of_auto.getSelectedItem().toString();
 
+
+          if ((requesternme.equals("")) || (requesterid.equals("")) || (relation.equals("")) || (requestertel.equals(""))|| (autopsydate.equals(""))
+                    || (doatime.equals("")) || (autotime.equals("")) || (pathologistname.equals("")) || (autopsytype.equals(""))) {
+
+                JOptionPane.showMessageDialog(null, "    Please fill in all the Fields.", "alert", JOptionPane.WARNING_MESSAGE, null);
+
+            } 
+            else {
+                try {
+                    String insertquery;
+                    DBConnection getCn = new DBConnection();
+                    Connection cn = getCn.getConnection();
+                    Statement st = cn.createStatement();
+                    int res = st.executeUpdate("INSERT INTO postmotermqueue VALUES ('" + admin + "','" + requesternme + "','" + requesterid + "','" + relation + "','" + requestertel + "','" + null + "','" + autotime + "','" + pathologistname + "','" + autopsytype + "','" + 1 + "') ");
+
+                    if (res == 1) {
+                        JOptionPane.showMessageDialog(null, "Member successfully added", "SUCCESS", JOptionPane.PLAIN_MESSAGE, tick);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "  P.M WAS NOT BOOKED SUCCESFULY", "ALERT", JOptionPane.WARNING_MESSAGE, null);
+                    }
+                } catch (SQLException e) {
+
+                    e.printStackTrace();
+                }
+
+            }
     }
+    
+    
+//    private void genform(){
+//    
+//        Data conn = new Data();
+//        
+//         try{
+//      String report="C:\\Users\\JEREMY\\Documents\\NetBeansProjects\\employeedb\\cert_details.jrxml";
+//      JasperReport jr =JasperCompileManager.compileReport(report);
+//      JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
+//      JasperViewer.viewReport(jp);
+//      }
+//      catch(JRException j_e){
+//     System.out.print(j_e);
+//
+//      }
+//    
+//    }
 
     private void nambatxtKeyTyped(KeyEvent ke) {
         char cr = ke.getKeyChar();

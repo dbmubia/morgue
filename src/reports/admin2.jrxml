@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admin2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cd221e18-5e4d-4591-9fcd-086939c120a3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Sun Feb 09 15:21:06 EAT 2014"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="ds1" uuid="618e17d9-f737-412e-a2c6-71acd00943b5">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     postmotermqueue.`admin_no` AS postmotermqueue_admin_no,
+     postmotermqueue.`requester_name` AS postmotermqueue_requester_name,
+     postmotermqueue.`requester_id` AS postmotermqueue_requester_id,
+     postmotermqueue.`requester_relation` AS postmotermqueue_requester_relation,
+     postmotermqueue.`requester_tel` AS postmotermqueue_requester_tel,
+     postmotermqueue.`auto_date` AS postmotermqueue_auto_date,
+     postmotermqueue.`autopsy_ time` AS postmotermqueue_autopsy__time,
+     postmotermqueue.`autopsy_nature` AS postmotermqueue_autopsy_nature,
+     postmotermqueue.`pathologist_name` AS postmotermqueue_pathologist_name,
+     postmotermqueue.`status` AS postmotermqueue_status
+FROM
+     `postmotermqueue` postmotermqueue]]>
+		</queryString>
+		<field name="postmotermqueue_admin_no" class="java.lang.Integer"/>
+		<field name="postmotermqueue_requester_name" class="java.lang.String"/>
+		<field name="postmotermqueue_requester_id" class="java.lang.String"/>
+		<field name="postmotermqueue_requester_relation" class="java.lang.String"/>
+		<field name="postmotermqueue_requester_tel" class="java.lang.Integer"/>
+		<field name="postmotermqueue_auto_date" class="java.lang.String"/>
+		<field name="postmotermqueue_autopsy__time" class="java.lang.String"/>
+		<field name="postmotermqueue_autopsy_nature" class="java.lang.String"/>
+		<field name="postmotermqueue_pathologist_name" class="java.lang.String"/>
+		<field name="postmotermqueue_status" class="java.lang.Boolean"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT * FROM postmotermqueue;]]>
+	</queryString>
+	<field name="admin_no" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requester_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requester_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requester_relation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requester_tel" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="auto_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="autopsy_ time" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="autopsy_nature" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pathologist_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="h.mm.ss a">
+				<reportElement uuid="ab7e53ea-213a-4342-af7a-a5c1e4daa91b" x="396" y="0" width="159" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f46819a6-873f-4abc-b480-c44b29249817" x="113" y="0" width="265" height="46"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADMISSION REPORT]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="b75ea673-9af1-4db2-806e-7c9758b5f372" x="113" y="0" width="58" height="46"/>
+				<imageExpression><![CDATA["E:\\EXTERNAL\\WORKSPACES\\Netbeans Projects\\KUFH\\src\\images\\Add_new.png"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement uuid="ffdaf291-f5a3-4d2c-82d4-af16ddfaef8e" x="442" y="29" width="113" height="50"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<textField>
+				<reportElement uuid="8e2fc29b-b5bd-421f-930b-3fa43687ac28" x="13" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{admin_no}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="267" splitType="Stretch">
+			<frame>
+				<reportElement uuid="1368f007-6e43-428d-86e2-552a5ed7d75a" x="0" y="0" width="555" height="183"/>
+			</frame>
+			<textField>
+				<reportElement uuid="e4963e78-9a05-4e05-9a56-3128897562e2" x="424" y="247" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="459ac450-42ea-462e-9e1c-7b21c2a9317c" x="515" y="247" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
