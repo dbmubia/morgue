@@ -64,7 +64,7 @@ public class MainForm extends JFrame implements WindowListener {
         title.setForeground(new Color(242, 242, 189));
         title.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         title.setEditable(false);
-                //title.setEnabled(false);
+        //title.setEnabled(false);
 
         tools = new komponenMakeOver.PanelUserMakeover();
         tools.setBounds(0, 45, display.width, 25);
@@ -214,7 +214,7 @@ public class MainForm extends JFrame implements WindowListener {
         Accounts.setBackground(new Color(255, 255, 255));
         NewJMenuBar.add(Accounts);
 
-               //settup menu
+        //settup menu
         JMenu settup = new JMenu("Setup Business");
         settup.setFont(new Font("Dialog", Font.PLAIN, 12));
         settup.setMnemonic('S');
@@ -310,7 +310,7 @@ public class MainForm extends JFrame implements WindowListener {
 
         userman.add(MasterUser);
 
-               //Feedback menu
+        //Feedback menu
         JMenu feedback = new JMenu("Feedback");
         feedback.setFont(new Font("Dialog", Font.PLAIN, 12));
         feedback.setMnemonic('F');
@@ -340,7 +340,7 @@ public class MainForm extends JFrame implements WindowListener {
         NewJMenuBar.add(MnuRec);
 		//End records menu
 
-			//Set records sub menu
+        //Set records sub menu
         //-- For Customer
         JMenuItem ItmCustomer = new JMenuItem("P.M Grid");
         ItmCustomer.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -424,8 +424,8 @@ public class MainForm extends JFrame implements WindowListener {
         MnuRec.addSeparator();
 
 			//-- For Invoices
-			//-- For Purchase Orders
-			//-- For Purchase Receipt
+        //-- For Purchase Orders
+        //-- For Purchase Receipt
         //-- For Expenses
         JMenuItem ItmExpense = new JMenuItem("Expenses");
         ItmExpense.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -443,10 +443,10 @@ public class MainForm extends JFrame implements WindowListener {
         MnuRec.add(ItmExpense);
 
 			//End records sub menu
-		//Setup proccess menu
-		//Setup reports menu
-		//End records menu
-		//Setup system menu
+        //Setup proccess menu
+        //Setup reports menu
+        //End records menu
+        //Setup system menu
         //Setup help menu
         JMenu MnuHelp = new JMenu("Help");
         MnuHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -455,7 +455,7 @@ public class MainForm extends JFrame implements WindowListener {
         // MnuHelp.addActionListener(JMenuActionListener);
         NewJMenuBar.add(MnuHelp);
 
-		//End records menu
+        //End records menu
         JMenuItem ItmMenHp = new JMenuItem("Help on HIMS");
         ItmMenHp.setFont(new Font("Dialog", Font.PLAIN, 12));
         ItmMenHp.setMnemonic('I');
@@ -526,7 +526,7 @@ public class MainForm extends JFrame implements WindowListener {
         NewJToolBar.addSeparator();
         NewJToolBar.add(title);
         NewJToolBar.addSeparator();
-		//End create a toolbar button
+        //End create a toolbar button
 
         return NewJToolBar;
     }
@@ -549,7 +549,7 @@ public class MainForm extends JFrame implements WindowListener {
     /**
      * ******************** Method for loading form start ********************
      */
-	//Create customer form
+    //Create customer form
     protected void loadChangePasswordForm() throws SQLException {
         //Verify if the form is already loaded
         boolean AlreadyLoaded = isLoaded("Change Password");
@@ -564,6 +564,7 @@ public class MainForm extends JFrame implements WindowListener {
                 FormChangePass.setIcon(false);
                 FormChangePass.setSelected(true);
             } catch (PropertyVetoException e) {
+                e.printStackTrace();
             }
             //End load the FormCustomer
         } else {
@@ -571,10 +572,11 @@ public class MainForm extends JFrame implements WindowListener {
                 FormChangePass.setIcon(false);
                 FormChangePass.setSelected(true);
             } catch (PropertyVetoException e) {
+                e.printStackTrace();
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadAdmissionForm() throws SQLException {
@@ -601,7 +603,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadUserFuntionForm() throws SQLException {
@@ -628,7 +630,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadMasterUserForm() throws SQLException {
@@ -655,7 +657,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadBackupForm() throws SQLException {
@@ -682,7 +684,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadColdRoomForm() throws SQLException {
@@ -709,7 +711,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void loadBusinessSetup() throws SQLException {
@@ -761,7 +763,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     protected void pmgridload() throws SQLException {
@@ -788,7 +790,7 @@ public class MainForm extends JFrame implements WindowListener {
             }
         }
 
-		//End verify if the form is already loaded
+        //End verify if the form is already loaded
     }
 
     //Create action listener for JMenu
@@ -858,12 +860,20 @@ public class MainForm extends JFrame implements WindowListener {
                 } catch (SQLException sqle) {
                 }
 
-            }
+            } else if (srcObject == "changepass") {
+
+                try {
+                    loadChangePasswordForm();
+
+                } catch (SQLException sqle) {
+                }
+
+            }//"changepass"
 
         }
     };
 
-	//End create action listener for JMenu
+    //End create action listener for JMenu
     //Create action Listerner for JToolBar Button
     ActionListener JToolBarActionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {

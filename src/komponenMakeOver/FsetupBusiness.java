@@ -63,7 +63,7 @@ public class FsetupBusiness extends JInternalFrame{
     public  void initial(){
         
     bussnesstitle=new JLabel();
-    bussnesstitle.setText("Bussiness Tittle :");
+    bussnesstitle.setText("Bussiness Title :");
     bussnesstitle.setForeground(new Color(186,190,198));
     bussnesstitle.setFont(new Font("Lucida Sans", Font.BOLD, 16));
     bussnesstitle.setBounds(10, 50, 170, 50);

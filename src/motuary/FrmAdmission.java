@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package motuary;
 
@@ -13,13 +8,17 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -45,6 +44,9 @@ public class FrmAdmission extends JInternalFrame{
     private JTextField DNames,DID,DPLACE,DAGE,TagNo,KNAMES,KID,RELATION,RESIDENCE,ADDRESS,TELEPHONE,KNAMESTWO,KIDTWO,RELATIONTWO,RESIDENCETWO,ADDRESSTWO,TELEPHONETWO;
     private JXDatePicker DDATEDEATH;
     private JRadioButton male,female;
+    private ButtonGroup sex;
+    private String sexx;
+    private String DNames,DID,DPLACE,DAGE,KNAMES,KID,RELATION;
     private JTextArea TXTANOD;
     private JTextField location,days;
     private JComboBox yesone,yestwo;
@@ -138,8 +140,12 @@ public class FrmAdmission extends JInternalFrame{
         DsexM.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         DsexM.setBounds( 346, 110, 80, 30);
         
+        sex = new ButtonGroup();
+        
         male=new JRadioButton("male");
         male.setBorder(null);
+        sex.add(male);
+        male.setSelected(true);
         male.setBounds(400, 123, 12, 10);
         
         DsexF=new JLabel();
@@ -149,8 +155,11 @@ public class FrmAdmission extends JInternalFrame{
         DsexF.setBounds( 436, 110, 80, 30);
         
         female=new JRadioButton("female");
+        sex.add(female);
         female.setBorder(null);
         female.setBounds(506, 123, 12, 10);
+        
+
         
         DdateOfDeath=new JLabel();
         DdateOfDeath.setText("Date of death    :");
@@ -660,8 +669,8 @@ public class FrmAdmission extends JInternalFrame{
 		{
 		if(e.getSource()==add){ 
                             
-                            btnAddBody(e);}
-				
+                            //btnAddBody(e);}
+                            getsex();
                 }
     
     
@@ -680,5 +689,22 @@ public class FrmAdmission extends JInternalFrame{
 
     }    
     
+    private String getsex(){
+     Enumeration<AbstractButton> allRadioButton=sex.getElements();  
+        while(allRadioButton.hasMoreElements())  
+        {  
+           JRadioButton temp=(JRadioButton)allRadioButton.nextElement();  
+           if(temp.isSelected())  
+           {  
+             sexx = temp.getText(); 
+           }  
+        }       
+                return sexx;
+    }
     
+    
+    }
+
+
+
 }
