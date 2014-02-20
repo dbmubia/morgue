@@ -510,7 +510,7 @@ public class MainForm extends JFrame implements WindowListener {
         //Create a toolbar button
         NewJToolBar.add(CreateJToolbarButton("Add new corpse details", "src/images/Add_new.png", "tooladd"));
 
-        NewJToolBar.add(CreateJToolbarButton("Dispatch", "src/images/dispatch.png", "toolCus"));
+        NewJToolBar.add(CreateJToolbarButton("Dispatch", "src/images/dispatch.png", "tooladdtrial"));
         NewJToolBar.add(CreateJToolbarButton("Body Viewing Bookings", "src/images/book.png", "toolEmp"));
         NewJToolBar.add(CreateJToolbarButton("Hearse Services", "src/images/hearse.png", "toolAss"));
         NewJToolBar.add(CreateJToolbarButton("Job card Record", "src/images/card.png", "toolHostel"));
@@ -610,12 +610,12 @@ public class MainForm extends JFrame implements WindowListener {
         //Verify if the form is already loaded
         boolean AlreadyLoaded = isLoaded("tabbed grid");
         if (AlreadyLoaded == false) {
-            FormAadmission = new FrmAdmission();
-            Desk1.add(FormAadmission);
+            pm_grid = new postmoterm_grid();
+            Desk1.add(pm_grid);
 
             //Load the FormCustomer
-            FormAadmission.setVisible(true);
-            FormAadmission.show();
+            pm_grid.setVisible(true);
+            pm_grid.show();
             try {
                 FormAadmission.setIcon(false);
                 FormAadmission.setSelected(true);
@@ -624,8 +624,8 @@ public class MainForm extends JFrame implements WindowListener {
             //End load the FormCustomer
         } else {
             try {
-                FormAadmission.setIcon(false);
-                FormAadmission.setSelected(true);
+                pm_grid.setIcon(false);
+                pm_grid.setSelected(true);
             } catch (PropertyVetoException e) {
             }
         }
@@ -912,11 +912,12 @@ public class MainForm extends JFrame implements WindowListener {
                 } catch (SQLException sqle) {
                     sqle.printStackTrace();
                 }
-//            } else if (srcObject == "toolEmp") {
-//                try {
-//                    loadEmployeeForm();
-//                } catch (SQLException sqle) {
-//                }
+            } else if (srcObject == "tooladdtrial") {
+                try {
+                    loadtabsform();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
 //
 //            } else if (srcObject == "toolAss") {
 //
