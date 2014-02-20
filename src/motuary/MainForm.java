@@ -606,6 +606,34 @@ public class MainForm extends JFrame implements WindowListener {
         //End verify if the form is already loaded
     }
 
+    protected void loadtabsform() throws SQLException {
+        //Verify if the form is already loaded
+        boolean AlreadyLoaded = isLoaded("tabbed grid");
+        if (AlreadyLoaded == false) {
+            FormAadmission = new FrmAdmission();
+            Desk1.add(FormAadmission);
+
+            //Load the FormCustomer
+            FormAadmission.setVisible(true);
+            FormAadmission.show();
+            try {
+                FormAadmission.setIcon(false);
+                FormAadmission.setSelected(true);
+            } catch (PropertyVetoException e) {
+            }
+            //End load the FormCustomer
+        } else {
+            try {
+                FormAadmission.setIcon(false);
+                FormAadmission.setSelected(true);
+            } catch (PropertyVetoException e) {
+            }
+        }
+
+        //End verify if the form is already loaded
+    }
+
+    
     protected void loadUserFuntionForm() throws SQLException {
         //Verify if the form is already loaded
         boolean AlreadyLoaded = isLoaded("User Function");
