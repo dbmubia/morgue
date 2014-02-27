@@ -43,7 +43,7 @@ public class MainForm extends JFrame implements WindowListener {
     FsetupBusiness FormBussinessSetup;
     postmotermrequest requestpm;
     Postmotermcontrol pcontrol;
-    postmoterm_grid pm_grid;
+    Formadmin2 pm_grid;
     FrmAdmission FormAadmission;
 
     public MainForm() {
@@ -610,7 +610,7 @@ public class MainForm extends JFrame implements WindowListener {
         //Verify if the form is already loaded
         boolean AlreadyLoaded = isLoaded("tabbed grid");
         if (AlreadyLoaded == false) {
-            pm_grid = new postmoterm_grid();
+            pm_grid = new Formadmin2();
             Desk1.add(pm_grid);
 
             //Load the FormCustomer

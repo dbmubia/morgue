@@ -355,13 +355,14 @@ public class postmotermrequest extends JInternalFrame {
         ImageIcon alert = new ImageIcon("src/images/warning.png");
         String SQL = "";
         SQL = "SELECT * FROM demo_admin WHERE admin_no = '" + nammba + "'";
+        String SQL2="select MAX(AdminNo) from deceased_tb";
 
         try {
             ResultSet rs;
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-            rs = st.executeQuery(SQL);
+            rs = st.executeQuery(SQL2);
 
             int count = 0;
 
@@ -369,12 +370,12 @@ public class postmotermrequest extends JInternalFrame {
                 count = count + 1;
 
                 namba = rs.getString(1);
-                jina = rs.getString(2);
-                date = rs.getString(3);
+               // jina = rs.getString(2);
+               // date = rs.getString(3);
 
-                dname_txt.setText(jina);
+               // dname_txt.setText(jina);
                 admin_txt.setText(namba);
-                doa_txt.setText(date);
+               // doa_txt.setText(date);
                 soughtstate = true; 
             }
             if (count < 1) {

@@ -41,7 +41,7 @@ public class Postmotermcontrol extends JInternalFrame implements ActionListener 
 
     public static ResultSet rsCus;
 
-    private static String strSQL = "SELECT demo_admin.admin_no,demo_admin.names,demo_admin.admision_date,postmotermqueue.requester_name,postmotermqueue.requester_relation"
+    private static String strSQL = "SELECT demo_admin.admin_no,demo_admin.names,demo_admin.admision_date,postmotermqueue1.requester_name,postmotermqueue.requester_relation"
             + " FROM postmotermqueue,demo_admin"
             + " WHERE (postmotermqueue.admin_no = demo_admin.admin_no)";
 

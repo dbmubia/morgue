@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -48,8 +49,8 @@ public class FrmAdmission extends JInternalFrame {
     private JXDatePicker DDATEDEATH;
     private JRadioButton male, female;
     private ButtonGroup sex;
-    private String sexx;
-    private int namba;
+    private String sexx,namba;
+    private int  present;
     private String DNamestxt, DIDtxt, DPLACEtxt, DAGEtxt, KNAMEStxt, KIDtxt, RELATIONtxt;
     private JTextArea TXTANOD;
     private JTextField location, days;
@@ -63,16 +64,21 @@ public class FrmAdmission extends JInternalFrame {
     private JTextField PermitNo, NODeath, OB, PNAME, PoliceStation, RANK, SERVICENO;
     private JCheckBox Bp, NatureOD, POB;
     private JButton add;
+    Connection cn;
 
     private SimpleDateFormat formatter;
 
     Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
 
-    public FrmAdmission() {
+    public FrmAdmission() throws SQLException {
 
         super("Admission Form");
+        
         initial();
-
+        
+        cn = DBConnection.getConnection();
+         
+        getlast();
         setBounds(5, 20, display.width - 15, display.height - 95);
         setFrameIcon(new ImageIcon("src/images/add.png"));
         setClosable(true);
@@ -97,7 +103,7 @@ public class FrmAdmission extends JInternalFrame {
         TagNo = new komponenMakeOver.textfieldColdroomMakeover();
         TagNo.setBounds(495, 11, 150, 30);
         TagNo.setForeground(new Color(255, 220, 35));
-        TagNo.setText("namba here");
+        
 
         FullDnames = new JLabel();
         FullDnames.setText("Full Names       :");
@@ -158,7 +164,7 @@ public class FrmAdmission extends JInternalFrame {
         female.setBounds(506, 123, 12, 10);
 
         DdateOfDeath = new JLabel();
-        DdateOfDeath.setText("Date of death    :");
+        DdateOfDeath.setText("Date of death :");
         DdateOfDeath.setForeground(new Color(186, 190, 198));
         DdateOfDeath.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         DdateOfDeath.setBounds(4, 150, 200, 30);
@@ -635,9 +641,8 @@ public class FrmAdmission extends JInternalFrame {
         services.add(SERVICENO);
         services.add(add);
         services.add(policeheader);
-
-        JOptionPane.showMessageDialog(null, namba);
-
+        
+             
     }
 
     private class ButtonListener implements ActionListener {
@@ -674,22 +679,44 @@ public class FrmAdmission extends JInternalFrame {
         return sexx;
     }
 
-    private int getlast() {
+    private void getlast() {
+           
         try {
-            String getid = "select AdminNo from deceased_tb";
             ResultSet rs;
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-            rs = st.executeQuery(getid);
+            String SQL2="select MAX(AdminNo) from deceased_tb";
+            rs = st.executeQuery(SQL2);
+            
+
+            int count = 0;
 
             while (rs.next()) {
-                namba = rs.getInt(1);
+                count = count + 1;
+
+                namba = rs.getString(1);
+               int caunt = Integer.parseInt(namba);
+               present = caunt+1;
+              TagNo.setText("KUFH/"+present+"/2014");
+               
+
+
+            }
+            if (count < 1) {
+                JOptionPane.showMessageDialog(null, "          record not found", "alert", JOptionPane.WARNING_MESSAGE, null);
+                
+            } else if (count > 1) {
+                JOptionPane.showMessageDialog(null, "    There seems to be a duplicate record.", "alert", JOptionPane.WARNING_MESSAGE, null);
                 
             }
+
+            Data close = new Data();
+            close.closingConnection(cn, st, rs);
+            close = null;
         } catch (SQLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
-        return namba;
+        return ;
     }
 }

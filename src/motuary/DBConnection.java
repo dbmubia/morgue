@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 
 public class DBConnection 
 {
-    public String PROP_FILE = "initial.ini";
+    public static String PROP_FILE = "initial.ini";
     
     public DBConnection() {
+
+    
     }
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         Connection cn = null;
         try {            
             Class.forName("com.mysql.jdbc.Driver");
@@ -37,7 +39,8 @@ public class DBConnection
             password = p2.getProperty("Password");
             
             url = "jdbc:mysql://" + server + "/" + database;
-            cn = DriverManager.getConnection (url, userID, password);                        
+            cn = DriverManager.getConnection (url, userID, password);     
+            
             return cn;
         }
         catch (SQLException se) 
