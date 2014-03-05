@@ -617,7 +617,7 @@ public class MainForm extends JFrame implements WindowListener {
             pm_grid.setVisible(true);
             pm_grid.show();
             try {
-                FormAadmission.setIcon(false);
+                FormAadmission.setIcon(true);
                 FormAadmission.setSelected(true);
             } catch (PropertyVetoException e) {
             }
@@ -1027,7 +1027,7 @@ public class MainForm extends JFrame implements WindowListener {
                 return true;
             }
         }
-        return false;
+        return false; 
 
     }
 

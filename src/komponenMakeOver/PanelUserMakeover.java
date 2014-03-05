@@ -28,9 +28,9 @@ import javax.swing.Timer;
 public class PanelUserMakeover extends JPanel{
     
     
-    private java.util.Date activeDate = new java.util.Date();
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-    private String date = sdf.format(activeDate) ;
+    private static java.util.Date activeDate = new java.util.Date();
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+    public static String date = sdf.format(activeDate) ;
     private Image gam;
     private JTextField txtUserID=new JTextField();
     private JTextField txtUserName=new JTextField();
@@ -137,6 +137,11 @@ public class PanelUserMakeover extends JPanel{
             }
    	};
     	new Timer(1000, taskPerformer).start();
+    }
+    
+    public static String returndate(){
+    
+    return date;
     }
      
 
