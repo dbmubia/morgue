@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,7 +53,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JTextField PermitNo, NODeath, OB, PNAME, PNAME2, PoliceStation, SERVICENO;
     private JCheckBox Bp, NatureOD, POB;
     private JButton add;
-    private JComboBox title, sexx, county, causes_death, RANK;
+    private JComboBox title, sexx, county, causes_death, RANK, naturecombo;
     private String[] countylist = {" ", "Meru", "Tharaka Nithi", "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua", "Nyeri"
         + "Kirinyaga", "Murang'a", "Kiambu", "Turkana.", "West Pokot", "Samburu", "Trans Nzoia", "Uasin Gishu", "Elgeyo/Marakwet"
         + "Nandi", "Baringo", "Laikipia", "Nakuru", "Narok."};
@@ -62,7 +64,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private int present, contctbolean;
     private String namba, contact;
     private JLabel Title, First_Name, middlename, lastname, Did, kid,
-            DOB, Tag, NOD, relation, residence, address, telephone, contactpersn, countyy, causes;
+            DOB, Tag, NOD, relation, residence, address, telephone, contactpersn, countyy, causes, natureofdeath;
     private JLabel kfname, klname, PONE, PTWO, dresidence, PME, BodyLocation, PMI, forensic, hasPM, Services, sexlabel;
     private String titletxt, fnmetxt, lnametxt, mnametxt, idtxt, dobtxt, sextxt, residencetxt, countytxt, todaysdate;
     private String fname1txt, fname2txt, lnametxt1, lnametxt2, id1txt, id2txt, relation1, relation2, residnce1, residence2, adress1, adress2, phone1, phone2;
@@ -71,16 +73,14 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JTextArea TXTANOD;
     private JLabel DsexM, DsexF;
     private JTextField DNames, MNAme, LName, DID, DPLACE, Dresidencetxt, TagNo, KFNAME, KFNAME1, KLNAME, KLNAME2, KID, RELATION, RESIDENCE, ADDRESS, TELEPHONE, KNAMESTWO, KIDTWO, RELATIONTWO, RESIDENCETWO, ADDRESSTWO, TELEPHONETWO;
-    private JXDatePicker DDATEDEATH, DateofBirth;
+    private JXDatePicker DateofBirth;
     private JRadioButton male, female, contct1, contact2;
 //    ImageIcon alert = new ImageIcon(getClass().getResource("images/success.png"));
     SqlDateModel model = new SqlDateModel();
     JDatePanelImpl datePanel = new JDatePanelImpl(model);
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
     JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel);
-    java.sql.Date selectedDate,deathdet;
-    
-    
+    java.sql.Date selectedDate, deathdet;
 
     public Formadmin2() {
 
@@ -107,10 +107,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
                 + "}";
 
         tabs = new JTabbedPane();
-
-        UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
 
         bioform();
         kininfo();
@@ -209,7 +205,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         DOB.setFont(new Font("Lucida Sans", Font.BOLD, 17));
         DOB.setBounds(385, 115, 100, 50);
 
-
         //DateofBirth = new JXDatePicker();
         datePicker.setBounds(350, 155, 200, 30);
         datePicker.setFont(new Font("Lucida Sans", Font.BOLD, 16));
@@ -251,9 +246,8 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         DdateOfDeath.setFont(new Font("Lucida Sans", Font.BOLD, 17));
         DdateOfDeath.setBounds(120, 170, 200, 30);
 
-        DDATEDEATH = new JXDatePicker();
-        DDATEDEATH.setBounds(250, 170, 190, 30);
-        DDATEDEATH.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        datePicker2.setBounds(250, 170, 190, 30);
+        datePicker2.setFont(new Font("Lucida Sans", Font.BOLD, 16));
 
         DplaceofDeath = new JLabel();
         DplaceofDeath.setText("Place of death :");
@@ -480,7 +474,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         nextkin.setText("Submit Kin");
         nextkin.addActionListener(this);
 
-       
         kins.add(kfname);
         kins.add(KFNAME);
         kins.add(KNAMESTWO);
@@ -549,8 +542,27 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         causes_death = new JComboBox(deathcauses);
         causes_death.setBounds(180, 100, 200, 30);
 
+        natureofdeath = new JLabel();
+        natureofdeath.setText("Nature of Death");
+        natureofdeath.setForeground(new Color(186, 190, 198));
+        natureofdeath.setFont(new Font("Lucida Sans", Font.BOLD, 14));
+        natureofdeath.setBounds(20, 135, 150, 30);
+
+        naturecombo = new JComboBox();
+        naturecombo.addItem(" ");
+        naturecombo.addItem("NORMAL CASE");
+        naturecombo.addItem("POLICE CASE");
+        naturecombo.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                ifcop();
+            }
+        });
+        naturecombo.setBounds(180, 135, 200, 30);
+
         NOD = new JLabel();
-        NOD.setText("Nature of death: ");
+        NOD.setText("Description: ");
         NOD.setForeground(new Color(186, 190, 198));
         NOD.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         NOD.setBounds(420, 100, 150, 60);
@@ -601,6 +613,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         OB = new komponenMakeOver.textfieldMakeover();
         OB.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         OB.setForeground(new Color(242, 242, 189));
+        OB.setEnabled(false);
         OB.setBounds(203, 240, 200, 30);
 
         NatureOD = new JCheckBox();
@@ -629,10 +642,12 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         policename.setText("First Names:");
         policename.setForeground(new Color(186, 190, 198));
         policename.setFont(new Font("Lucida Sans", Font.BOLD, 14));
+
         policename.setBounds(415, 210, 150, 30);
 
         PNAME = new komponenMakeOver.textfieldMakeover();
         PNAME.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        PNAME.setEnabled(false);
         PNAME.setForeground(new Color(242, 242, 189));
         PNAME.setBounds(545, 210, 150, 30);
 
@@ -644,6 +659,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
         PNAME2 = new komponenMakeOver.textfieldMakeover();
         PNAME2.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        PNAME2.setEnabled(false);
         PNAME2.setForeground(new Color(242, 242, 189));
         PNAME2.setBounds(820, 210, 150, 30);
 
@@ -655,6 +671,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
         PoliceStation = new komponenMakeOver.textfieldMakeover();
         PoliceStation.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        PoliceStation.setEnabled(false);
         PoliceStation.setForeground(new Color(242, 242, 189));
         PoliceStation.setBounds(545, 245, 150, 30);
 
@@ -665,6 +682,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         Prank.setBounds(700, 245, 100, 30);
 
         RANK = new JComboBox(policeranks);
+        RANK.setEnabled(false);
         RANK.setBounds(820, 245, 130, 30);
 
         Sno = new JLabel();
@@ -676,6 +694,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         SERVICENO = new komponenMakeOver.textfieldMakeover();
         SERVICENO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         SERVICENO.setForeground(new Color(242, 242, 189));
+        SERVICENO.setEnabled(false);
         SERVICENO.setBounds(545, 280, 150, 30);
 
         netxdeath = new komponenMakeOver.buttonMakeOverRectangle();
@@ -696,6 +715,8 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         deathinfo.add(PermitNo);
         deathinfo.add(NatureOD);
         deathinfo.add(noticeOfDeath);
+        deathinfo.add(natureofdeath);
+        deathinfo.add(naturecombo);
         deathinfo.add(NODeath);
         deathinfo.add(POB);
         deathinfo.add(policeLetter);
@@ -755,7 +776,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         lnametxt = LName.getText();
         mnametxt = MNAme.getText();
         idtxt = DID.getText();
-     // dobtxt = DateofBirth.getDate().toString();
+        // dobtxt = DateofBirth.getDate().toString();
         selectedDate = (java.sql.Date) datePicker.getModel().getValue();
         dobtxt = selectedDate.toString();
         sextxt = sexx.getSelectedItem().toString();
@@ -777,11 +798,11 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
             Data data = new Data();
             data.ExecuteSQL(sql);
             data = null;
-            
-                    kins.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PARTICULARS OF  "+fnmetxt+"  NEXT OF KIN (B)", 
-                    javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.CENTER, 
+
+            kins.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PARTICULARS OF  " + fnmetxt + "  NEXT OF KIN (B)",
+                    javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.CENTER,
                     new java.awt.Font("Lucida Sans", 1, 16), Color.WHITE));
-            
+
             JOptionPane.showMessageDialog(null, "Deceased successfully added, \n please fill in rest of the form as required", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
             tabs.setSelectedIndex(1);
         }
@@ -826,22 +847,21 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
             data = null;
 
             JOptionPane.showMessageDialog(null, "Kin information succesfuly posted", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
-            
-            
+
             tabs.setSelectedIndex(2);
         }
     }
 
     public void deathstuff() {
-    
-        String deathdyte, deathplace, causeofdeth, description, burial, police, notice, copfname, coplname, pstation, prank, pservce;
 
-        
+        String deathdyte, deathplace, causeofdeth, description, burial,polinrmalcse, police, notice, copfname, coplname, pstation, prank, pservce;
+
         deathdet = (java.sql.Date) datePicker2.getModel().getValue();
         deathdyte = deathdet.toString();
-        deathdyte = DDATEDEATH.getDate().toString();
+        //deathdyte = DDATEDEATH.getDate().toString();
         deathplace = DPLACE.getText();
         causeofdeth = causes_death.getSelectedItem().toString();
+        polinrmalcse = naturecombo.getSelectedItem().toString();
         description = TXTANOD.getText();
         burial = PermitNo.getText();
         police = OB.getText();
@@ -852,8 +872,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         prank = RANK.getSelectedItem().toString();
         pservce = SERVICENO.getText();
 
-
-        
         if ((deathdyte.equals("")) || (deathplace.equals("")) || (causeofdeth.equals("")) || (description.equals("")) && (burial.equals(""))
                 && (police.equals("")) && (notice.equals(""))) {
 
@@ -861,9 +879,9 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
         } else {
 
-            String sql = "INSERT INTO deaths_info (admission_repo,deathdate,place_of_death,cause_of_death,death_nature,burial_perm_no,notice_o_death,"
+            String sql = "INSERT INTO deaths_info (admission_repo,deathdate,place_of_death,cause_of_death,death_nature,poli_norm_case,burial_perm_no,notice_o_death,"
                     + "police_letter,service_no,police_fname,police_lname,station_police,p_rank) "
-                    + " VALUES ('" + 9 + "','" + deathdyte + "','" + deathplace + "','" + causeofdeth + "','" + description + "','" + burial + "',"
+                    + " VALUES ('" + 9 + "','" + deathdyte + "','" + deathplace + "','" + causeofdeth + "','" + description + "','"+polinrmalcse+"','" + burial + "',"
                     + "'" + notice + "','" + police + "','" + pservce + "','" + copfname + "','" + coplname + "','" + pstation + "','" + prank + "')";
 
             Data data = new Data();
@@ -871,8 +889,9 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
             data = null;
 
             JOptionPane.showMessageDialog(null, "Deceased successfully added, \n please fill in rest of the form as required", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
-            Servicesdialog dia = new Servicesdialog(null, closable);
+            Servicesdialog dia = new Servicesdialog(null,closable);
             dia.show();
+            dispose();
         }
 
     }
@@ -884,13 +903,40 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         if (obbj == next) {
             pushbiodetails();
         } else if (obbj == nextkin) {
-           
+
             submitkin();
         } else if (obbj == netxdeath) {
 
             deathstuff();
         }
 
+    }
+
+    private void ifcop() {
+        if (naturecombo.getSelectedItem() == "POLICE CASE") {
+            OB.setEnabled(true);
+            PoliceStation.setEnabled(true);
+            PNAME.setEnabled(true);
+            PNAME2.setEnabled(true);
+            RANK.setEnabled(true);
+            SERVICENO.setEnabled(true);
+        } else if (naturecombo.getSelectedItem() == "NORMAL CASE") {
+            OB.setEnabled(false);
+            PoliceStation.setEnabled(false);
+            PNAME.setEnabled(false);
+            PNAME2.setEnabled(false);
+            RANK.setEnabled(false);
+            SERVICENO.setEnabled(false);
+
+        } else if (naturecombo.getSelectedItem() == " ") {
+            OB.setEnabled(false);
+            PoliceStation.setEnabled(false);
+            PNAME.setEnabled(false);
+            PNAME2.setEnabled(false);
+            RANK.setEnabled(false);
+            SERVICENO.setEnabled(false);
+
+        }
     }
 
     private String getcontact() {

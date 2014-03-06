@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package motuary;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -35,16 +37,43 @@ public class Servicesdialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        submitservicebt = new javax.swing.JButton();
+        closeservicesdialog = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         servicestable = new javax.swing.JTable();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jToolBar1.setRollover(true);
+
+        submitservicebt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tick.png"))); // NOI18N
+        submitservicebt.setText("Submit");
+        submitservicebt.setFocusable(false);
+        submitservicebt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        submitservicebt.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        submitservicebt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitservicebtActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(submitservicebt);
+
+        closeservicesdialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button_cancel.png"))); // NOI18N
+        closeservicesdialog.setText("Close");
+        closeservicesdialog.setFocusable(false);
+        closeservicesdialog.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        closeservicesdialog.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        closeservicesdialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeservicesdialogActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(closeservicesdialog);
+
         servicestable.setAutoCreateRowSorter(true);
         servicestable.setBackground(new java.awt.Color(66, 186, 159));
+        servicestable.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         servicestable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -69,61 +98,54 @@ public class Servicesdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        servicestable.setRowHeight(30);
+        servicestable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                servicestableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(servicestable);
-
-        jToolBar1.setRollover(true);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save16.png"))); // NOI18N
-        jButton1.setText("Save");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton1);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/button_cancel.png"))); // NOI18N
-        jButton2.setText("Close");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton2);
+        if (servicestable.getColumnModel().getColumnCount() > 0) {
+            servicestable.getColumnModel().getColumn(0).setMinWidth(80);
+            servicestable.getColumnModel().getColumn(0).setPreferredWidth(5);
+            servicestable.getColumnModel().getColumn(0).setMaxWidth(100);
+            servicestable.getColumnModel().getColumn(1).setMinWidth(400);
+            servicestable.getColumnModel().getColumn(1).setPreferredWidth(50);
+            servicestable.getColumnModel().getColumn(1).setMaxWidth(400);
+            servicestable.getColumnModel().getColumn(2).setPreferredWidth(10);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void submitservicebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitservicebtActionPerformed
+        pushsevices();
+    }//GEN-LAST:event_submitservicebtActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void closeservicesdialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeservicesdialogActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_closeservicesdialogActionPerformed
+
+    private void servicestableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicestableMouseClicked
+        // pushsevices();
+    }//GEN-LAST:event_servicestableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,29 +187,21 @@ public class Servicesdialog extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
 
+    }
+    private String first, second, third;
+    private static java.util.Date activeDate = new java.util.Date();
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+    public static String date = sdf.format(activeDate);
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton closeservicesdialog;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable servicestable;
+    private javax.swing.JButton submitservicebt;
     // End of variables declaration//GEN-END:variables
 
-
- private void getservices() {
+    private void getservices() {
 
         try {
             String strSQL = "SELECT * from services";
@@ -195,12 +209,11 @@ public class Servicesdialog extends javax.swing.JDialog {
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-            
+
             rs = st.executeQuery(strSQL);
-            
+
             servicestable.setModel(DbUtils.resultSetToTableModel(rs));
 
-                
         } catch (Exception e) {
             System.out.println(e);
 
@@ -208,7 +221,29 @@ public class Servicesdialog extends javax.swing.JDialog {
 
     }
 
+    private void pushsevices() {
 
+        int row = servicestable.getSelectedRow();
+        first = servicestable.getValueAt(row, 0).toString();
+        second = servicestable.getValueAt(row, 1).toString();
+        third = servicestable.getValueAt(row, 2).toString();
+
+        if ((first == " ") || (second == "") || (third == " ")) {
+            JOptionPane.showMessageDialog(this, " You are required to select a Service", "alert", JOptionPane.WARNING_MESSAGE, null);
+        } else {
+
+            String insertservice = "INSERT INTO invoice_tb (admin_no_finance,service_code_finance,cost_of_service,date) "
+                    + " VALUES ('" + 10 + "','" + first + "','" + third + "','" + date + "')";
+
+            Data data = new Data();
+            data.ExecuteSQL(insertservice);
+            data = null;
+            
+            JOptionPane.showMessageDialog(rootPane, "Registration Completed successfully.");
+            dispose();
+            
+        }
+
+    }
 
 }
-

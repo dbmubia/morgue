@@ -8,6 +8,7 @@ package motuary;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -21,6 +22,7 @@ public class dashboard extends javax.swing.JFrame {
      */
     public dashboard() {
         initComponents();
+        getservices();
     }
 
     /**
@@ -163,9 +165,9 @@ public class dashboard extends javax.swing.JFrame {
         personalpanelLayout.setHorizontalGroup(
             personalpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(personalpanelLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(96, 96, 96)
                 .addComponent(personalinfopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         personalpanelLayout.setVerticalGroup(
             personalpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,8 +246,8 @@ public class dashboard extends javax.swing.JFrame {
             holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(holderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(deceased_name_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(deceased_name_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -340,23 +342,24 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel sexcpanel;
     // End of variables declaration//GEN-END:variables
     private String tname, tmname, tlaname, names, id, age, sex, residence, county;
-
+    
     private void getservices() {
-
+        
         try {
-            String strSQL = "SELECT * from deceased_tb where AdminNo";
+            String strSQL = "SELECT * from deceased_tb where AdminNo = 15";
             ResultSet rs;
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-
+            
             rs = st.executeQuery(strSQL);
-
+            
             int count = 0;
-
-            while (rs.next()) {
-                count = count + 1;
-
+            
+            if (rs.next()) {
+               //count = count + 1;
+               // JOptionPane.showMessageDialog(null, rs);
+                
                 tname = rs.getString(1);
                 tmname = rs.getString(2);
                 tlaname = rs.getString(3);
@@ -366,20 +369,19 @@ public class dashboard extends javax.swing.JFrame {
                 residence = rs.getString(7);
                 county = rs.getString(8);
                 
-               deceased_name_panel.setText(tname + tmname + tlaname);
-               id_panel_txt.setText(id);
-               
-               
-               
+                deceased_name_panel.setText(tname + tmname + tlaname);
+                id_panel_txt.setText(id);
+                sexcpanel.setText(sex);
+                residencecppanel.setText(residence);
+                countycpanel.setText(county);
                 
-
             }
-
+            
         } catch (Exception e) {
             System.out.println(e);
-
+            
         }
-
+        
     }
-
+    
 }
