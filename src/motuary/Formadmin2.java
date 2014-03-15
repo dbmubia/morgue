@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,7 +39,6 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.SqlDateModel;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -48,7 +49,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JTabbedPane tabs;
     private JPanel bio, deathinfo;
     private JPanel kins;
-    private JPanel deceased;
+    private int reqpost;
     private JLabel official, Notification, burrialpermit, noticeOfDeath, policeLetter, policename, policename1, Pstation, Prank, Sno, policeheader;
     private JTextField PermitNo, NODeath, OB, PNAME, PNAME2, PoliceStation, SERVICENO;
     private JCheckBox Bp, NatureOD, POB;
@@ -66,14 +67,14 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JLabel Title, First_Name, middlename, lastname, Did, kid,
             DOB, Tag, NOD, relation, residence, address, telephone, contactpersn, countyy, causes, natureofdeath;
     private JLabel kfname, klname, PONE, PTWO, dresidence, PME, BodyLocation, PMI, forensic, hasPM, Services, sexlabel;
-    private String titletxt, fnmetxt, lnametxt, mnametxt, idtxt, dobtxt, sextxt, residencetxt, countytxt, todaysdate;
+    private String titletxt, fnmetxt, lnametxt, mnametxt, idtxt, dobtxt, sextxt, residencetxt, countytxt;
     private String fname1txt, fname2txt, lnametxt1, lnametxt2, id1txt, id2txt, relation1, relation2, residnce1, residence2, adress1, adress2, phone1, phone2;
     private ButtonGroup sex, contactperson;
     private JLabel DplaceofDeath, DdateOfDeath;
     private JTextArea TXTANOD;
     private JLabel DsexM, DsexF;
     private JTextField DNames, MNAme, LName, DID, DPLACE, Dresidencetxt, TagNo, KFNAME, KFNAME1, KLNAME, KLNAME2, KID, RELATION, RESIDENCE, ADDRESS, TELEPHONE, KNAMESTWO, KIDTWO, RELATIONTWO, RESIDENCETWO, ADDRESSTWO, TELEPHONETWO;
-    private JXDatePicker DateofBirth;
+
     private JRadioButton male, female, contct1, contact2;
 //    ImageIcon alert = new ImageIcon(getClass().getResource("images/success.png"));
     SqlDateModel model = new SqlDateModel();
@@ -81,6 +82,10 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
     JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel);
     java.sql.Date selectedDate, deathdet;
+
+    private static java.util.Date admidate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(admidate.getTime());
+    String todaysdate = sqlDate.toString();
 
     public Formadmin2() {
 
@@ -100,9 +105,9 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
     private void initial() {
 
-        String tabButtonCss = "margin:0;width:100px;height:10px;border-radius:3px;padding:10px;text-align:center;border:none;a:hover {\n"
-                + "	color: #ffffff;\n"
-                + "	background-color: #000000;\n"
+        String tabButtonCss = "margin:0; width:100px; height:5px; border-radius:3px; padding:10px; text-align:center; border:none;a:hover {\n"
+                + "	color: #F2F2BD;\n"
+                + "	background-color: #fff;\n"
                 + "	text-decoration: none;\n"
                 + "}";
 
@@ -198,6 +203,13 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         DID.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         DID.setForeground(new Color(242, 242, 189));
         DID.setBounds(110, 155, 200, 30);
+        DID.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                nambatxtKeyTyped(e);
+            }
+
+        });
 
         DOB = new JLabel();
         DOB.setText("Birth Date.");
@@ -378,11 +390,25 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         KID.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         KID.setForeground(new Color(242, 242, 189));
         KID.setBounds(115, 140, 220, 30);
+        KID.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                nambatxtKeyTyped(e);
+            }
+
+        });
 
         KIDTWO = new komponenMakeOver.textfieldMakeover();
         KIDTWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         KIDTWO.setForeground(new Color(242, 242, 189));
         KIDTWO.setBounds(345, 140, 220, 30);
+        KIDTWO.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                nambatxtKeyTyped(e);
+            }
+
+        });
 
         relation = new JLabel();
         relation.setText("Relation :");
@@ -782,7 +808,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         sextxt = sexx.getSelectedItem().toString();
         residencetxt = Dresidencetxt.getText();
         countytxt = county.getSelectedItem().toString();
-        todaysdate = komponenMakeOver.PanelUserMakeover.returndate();
+        //todaysdate = komponenMakeOver.PanelUserMakeover.returndate();
 
         if ((fnmetxt.equals("")) || (lnametxt.equals("")) || (mnametxt.equals("")) || (idtxt.equals("")) || (dobtxt.equals(""))
                 || (sextxt.equals("")) || (residencetxt.equals("")) || (countytxt.equals("")) || (todaysdate.equals(""))) {
@@ -825,11 +851,9 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         adress2 = ADDRESSTWO.getText();
         phone1 = TELEPHONE.getText();
         phone2 = TELEPHONETWO.getText();
-        contact = getcontact();
 
-        if (contact == "contact1") {
+        if (contct1.isSelected()) {
             contctbolean = 1;
-
         }
         if ((fname1txt.equals("")) || (lnametxt1.equals("")) || (id1txt.equals("")) || (relation1.equals("")) || (residnce1.equals(""))
                 || (adress1.equals("")) || (phone1.equals(""))) {
@@ -854,7 +878,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
     public void deathstuff() {
 
-        String deathdyte, deathplace, causeofdeth, description, burial,polinrmalcse, police, notice, copfname, coplname, pstation, prank, pservce;
+        String deathdyte, deathplace, causeofdeth, description, burial, polinrmalcse, police, notice, copfname, coplname, pstation, prank, pservce;
 
         deathdet = (java.sql.Date) datePicker2.getModel().getValue();
         deathdyte = deathdet.toString();
@@ -879,19 +903,36 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
         } else {
 
-            String sql = "INSERT INTO deaths_info (admission_repo,deathdate,place_of_death,cause_of_death,death_nature,poli_norm_case,burial_perm_no,notice_o_death,"
-                    + "police_letter,service_no,police_fname,police_lname,station_police,p_rank) "
-                    + " VALUES ('" + 9 + "','" + deathdyte + "','" + deathplace + "','" + causeofdeth + "','" + description + "','"+polinrmalcse+"','" + burial + "',"
-                    + "'" + notice + "','" + police + "','" + pservce + "','" + copfname + "','" + coplname + "','" + pstation + "','" + prank + "')";
+            try {
 
-            Data data = new Data();
-            data.ExecuteSQL(sql);
-            data = null;
+                String sql = "INSERT INTO deaths_info (admission_repo,deathdate,place_of_death,cause_of_death,death_nature,poli_norm_case,burial_perm_no,notice_o_death,"
+                        + "police_letter,service_no,police_fname,police_lname,station_police,p_rank,requires_pm) "
+                        + " VALUES ('" + present + "','" + deathdyte + "','" + deathplace + "','" + causeofdeth + "','" + description + "','" + polinrmalcse + "','" + burial + "',"
+                        + "'" + notice + "','" + police + "','" + pservce + "','" + copfname + "','" + coplname + "','" + pstation + "','" + prank + "','" + reqpost + "')";
 
-            JOptionPane.showMessageDialog(null, "Deceased successfully added, \n please fill in rest of the form as required", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
-            Servicesdialog dia = new Servicesdialog(null,closable);
-            dia.show();
-            dispose();
+                DBConnection here = new DBConnection();
+                Connection conn = here.getConnection();
+                Statement st = conn.createStatement();
+
+                int kama = st.executeUpdate(sql);
+
+                if (kama == 1) {
+
+                    JOptionPane.showMessageDialog(null, "Deceased successfully added, \n please fill in rest of the form as required", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
+                    Servicesdialog dia = new Servicesdialog(null, closable, present);
+//            dia.setVisible(true);
+//            dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "       Details Not Added to the Database.", "alert", JOptionPane.WARNING_MESSAGE, null);
+                }
+
+            } catch (Exception we) {
+
+                we.printStackTrace();
+//            dashboard launch = new dashboard(present);
+//            launch.setVisible(true);
+            }
         }
 
     }
@@ -908,6 +949,11 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         } else if (obbj == netxdeath) {
 
             deathstuff();
+//            servicedialog ser = new servicedialog(null,closable,12);
+//            ser.show();
+//            
+//            dashboard ser = new dashboard();
+//            ser.show();
         }
 
     }
@@ -920,6 +966,10 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
             PNAME2.setEnabled(true);
             RANK.setEnabled(true);
             SERVICENO.setEnabled(true);
+            burrialpermit.setEnabled(false);
+            NODeath.setEnabled(false);
+            reqpost = 1;
+
         } else if (naturecombo.getSelectedItem() == "NORMAL CASE") {
             OB.setEnabled(false);
             PoliceStation.setEnabled(false);
@@ -950,4 +1000,12 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         return contact;
     }
 
+    private void nambatxtKeyTyped(KeyEvent ke) {
+        char cr = ke.getKeyChar();
+        if (!(Character.isDigit(ke.getKeyChar()) || (cr == KeyEvent.VK_BACK_SPACE) || (cr == KeyEvent.VK_ENTER))) {
+            getToolkit().beep();
+            ke.consume();
+            JOptionPane.showMessageDialog(null, "Please enter digits only");
+        }
+    }
 }

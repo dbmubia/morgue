@@ -27,6 +27,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.SqlDateModel;
 
 /**
  *
@@ -35,7 +38,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class postmotermrequest extends JInternalFrame {
 
     private JPanel holder;
-    public String namba2db;
+    private String namba2db,idmourge;
 
     private JLabel topichd;
     private JLabel hdimage;
@@ -51,7 +54,7 @@ public class postmotermrequest extends JInternalFrame {
     private JLabel autopsy_time;
     private JLabel nature_of_autopsy;
     private JLabel name_of_pathologist;
-
+    private static java.util.Date Utildate = new java.util.Date();  
     private JTextField dname_txt;
     private JTextField admin_txt;
     private JTextField doa_txt;
@@ -60,16 +63,21 @@ public class postmotermrequest extends JInternalFrame {
     private JTextField reqid_txt;
     private JTextField admin_nosearchtxt;
     private JTextField req_tel_txt;
-    private org.jdesktop.swingx.JXDatePicker autopsy_date_txt;
+    java.sql.Date postmotermdate;
     private JTextField auto_time;
     private JTextField pathologist_txt;
     private JComboBox nature_of_auto;
+    
+    SqlDateModel model = new SqlDateModel();
+    JDatePanelImpl datePanel = new JDatePanelImpl(model);
+    JDatePickerImpl autopsy_date_txt = new JDatePickerImpl(datePanel);
 
     private JButton btnCancel;
     private JButton savebttn;
     private JButton searchbttn;
     private JButton hd;
     private JButton separator;
+    private Long dyte;
     private Boolean soughtstate;
 
     Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
@@ -134,18 +142,18 @@ public class postmotermrequest extends JInternalFrame {
         deceasedname = new JLabel();
         deceasedname.setText("Deceased Name:");
         deceasedname.setForeground(new Color(186, 190, 198));
-        deceasedname.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        deceasedname.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         deceasedname.setBounds(5, 100, 150, 30);
 
         dname_txt = new komponenMakeOver.textfieldMakeover();
         //dname_txt.requestFocusInWindow();
         dname_txt.setForeground(new Color(186, 190, 198));
-        dname_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        dname_txt.setFont(new Font("Lucida Sans", Font.BOLD, 12));
         dname_txt.setEditable(false);
         dname_txt.setBounds(160, 100, 200, 30);
 
         admissionno = new JLabel();
-        admissionno.setText("Admin. No:");
+        admissionno.setText("ID/PP No:");
         admissionno.setForeground(new Color(186, 190, 198));
         admissionno.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         admissionno.setBounds(370, 100, 100, 30);
@@ -153,7 +161,7 @@ public class postmotermrequest extends JInternalFrame {
         admin_txt = new komponenMakeOver.textfieldMakeover();
         //dname_txt.requestFocusInWindow();
         admin_txt.setForeground(new Color(186, 190, 198));
-        admin_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+        admin_txt.setFont(new Font("Lucida Sans", Font.BOLD, 12));
         admin_txt.setEditable(false);
         admin_txt.setBounds(470, 100, 100, 30);
 
@@ -231,7 +239,7 @@ public class postmotermrequest extends JInternalFrame {
         autopsy_date.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         autopsy_date.setBounds(375, 195, 150, 30);
 
-        autopsy_date_txt = new org.jdesktop.swingx.JXDatePicker();
+        
         autopsy_date_txt.setForeground(new Color(186, 190, 198));
         autopsy_date_txt.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         autopsy_date_txt.setBounds(560, 195, 200, 30);
@@ -351,31 +359,41 @@ public class postmotermrequest extends JInternalFrame {
 
         clearall();
 
-        String nammba = admin, jina, namba, date;
+        String nammba = admin;
+        String ttle,fname,lname,mname, namba;
         ImageIcon alert = new ImageIcon("src/images/warning.png");
         String SQL = "";
-        SQL = "SELECT * FROM demo_admin WHERE admin_no = '" + nammba + "'";
+        SQL = "SELECT AdminNo,title,first_name,middle_name,last_name,deceased_id FROM deceased_tb WHERE AdminNo = '" + nammba + "'";
         String SQL2="select MAX(AdminNo) from deceased_tb";
+        
+        java.util.Date activeDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(activeDate.getTime());
+        String datee=  sqlDate.toString();
 
         try {
             ResultSet rs;
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-            rs = st.executeQuery(SQL2);
+            rs = st.executeQuery(SQL);
 
             int count = 0;
 
             while (rs.next()) {
-                count = count + 1;
+                count = 1;
 
-                namba = rs.getString(1);
-               // jina = rs.getString(2);
-               // date = rs.getString(3);
+                idmourge =rs.getString(1);
+                ttle = rs.getString(2);
+                fname = rs.getString(3);
+                lname = rs.getString(4);
+                mname =rs.getString(5);
+                namba =rs.getString(6);
+                
+                
 
-               // dname_txt.setText(jina);
+                dname_txt.setText(ttle+ " "+fname+" "+" "+lname+" "+mname);
                 admin_txt.setText(namba);
-               // doa_txt.setText(date);
+                doa_txt.setText(datee);
                 soughtstate = true; 
             }
             if (count < 1) {
@@ -403,7 +421,6 @@ public class postmotermrequest extends JInternalFrame {
         reqid_txt.setText(null);
         reltion_txt.setText(null);
         req_tel_txt.setText(null);
-        autopsy_date_txt.setDate(null);
         auto_time.setText(null);
         pathologist_txt.setText(null);
    }
@@ -417,7 +434,8 @@ public class postmotermrequest extends JInternalFrame {
         String requesterid = reqid_txt.getText();
         String relation = reltion_txt.getText();
         String requestertel = req_tel_txt.getText();
-        String   autopsydate = autopsy_date_txt.getDate().toString();
+        postmotermdate =  (java.sql.Date) autopsy_date_txt.getModel().getValue();
+        String autopsydate = postmotermdate.toString();
         
         String doatime = doa_txt.getText();
         String autotime = auto_time.getText();
@@ -425,7 +443,7 @@ public class postmotermrequest extends JInternalFrame {
         String autopsytype = nature_of_auto.getSelectedItem().toString();
 
 
-          if ((requesternme.equals("")) || (requesterid.equals("")) || (relation.equals("")) || (requestertel.equals(""))|| (autopsydate.equals(""))
+          if ((requesternme.equals(" ")) || (requesterid.equals("")) || (relation.equals("")) || (requestertel.equals(""))|| (autopsydate.equals(""))
                     || (doatime.equals("")) || (autotime.equals("")) || (pathologistname.equals("")) || (autopsytype.equals(""))) {
 
                 JOptionPane.showMessageDialog(null, "    Please fill in all the Fields.", "alert", JOptionPane.WARNING_MESSAGE, null);
@@ -437,7 +455,7 @@ public class postmotermrequest extends JInternalFrame {
                     DBConnection getCn = new DBConnection();
                     Connection cn = getCn.getConnection();
                     Statement st = cn.createStatement();
-                    int res = st.executeUpdate("INSERT INTO postmotermqueue VALUES ('" + admin + "','" + requesternme + "','" + requesterid + "','" + relation + "','" + requestertel + "','" + null + "','" + autotime + "','" + pathologistname + "','" + autopsytype + "','" + 1 + "') ");
+                    int res = st.executeUpdate("INSERT INTO postmotermqueue1 (admin_no_requesttb,requester_name,requester_id,requester_relation,requester_tel,autopsy_date,autopsy_time,autopsy_nature,pathologists_name,status,approved) VALUES ('" + idmourge + "','" + requesternme + "','" + requesterid + "','" + relation + "','" + requestertel + "','" + autopsydate + "','" + autotime + "','" + pathologistname + "','" + autopsytype + "','" + 1 + "','"+0+"') ");
 
                     if (res == 1) {
                         JOptionPane.showMessageDialog(null, "Member successfully added", "SUCCESS", JOptionPane.PLAIN_MESSAGE, tick);

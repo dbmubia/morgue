@@ -22,8 +22,9 @@ public class Servicesdialog extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
-    public Servicesdialog(java.awt.Frame parent, boolean modal) {
+    public Servicesdialog(java.awt.Frame parent, boolean modal, int namber) {
         super(parent, modal);
+        deceasedid = namber;
         initComponents();
         getservices();
     }
@@ -136,7 +137,7 @@ public class Servicesdialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitservicebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitservicebtActionPerformed
-        pushsevices();
+        pushsevices(deceasedid);
     }//GEN-LAST:event_submitservicebtActionPerformed
 
     private void closeservicesdialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeservicesdialogActionPerformed
@@ -148,51 +149,56 @@ public class Servicesdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_servicestableMouseClicked
 
     /**
-     * @param args the command line arguments
+     * @param args the command line arguments //
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Servicesdialog dialog = new Servicesdialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Servicesdialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+////        java.awt.EventQueue.invokeLater(new Runnable() {
+////            public void run() {
+////                Servicesdialog dialog = new Servicesdialog(new javax.swing.JFrame(), true,);
+////                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+////                    @Override
+////                    public void windowClosing(java.awt.event.WindowEvent e) {
+////                        System.exit(0);
+////                    }
+////                });
+////                dialog.setVisible(true);
+////            }
+////        });
+//
+//    }
     private String first, second, third;
-    private static java.util.Date activeDate = new java.util.Date();
-    public static SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-    public static String date = sdf.format(activeDate);
+    
+    
+    private static java.util.Date bookdate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(bookdate.getTime());
+    String dateservcebooked = sqlDate.toString();
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeservicesdialog;
     private javax.swing.JScrollPane jScrollPane1;
@@ -200,6 +206,7 @@ public class Servicesdialog extends javax.swing.JDialog {
     private javax.swing.JTable servicestable;
     private javax.swing.JButton submitservicebt;
     // End of variables declaration//GEN-END:variables
+    private int deceasedid;
 
     private void getservices() {
 
@@ -221,8 +228,8 @@ public class Servicesdialog extends javax.swing.JDialog {
 
     }
 
-    private void pushsevices() {
-
+    private void pushsevices(int namba) {
+       int mtuwetu = namba;
         int row = servicestable.getSelectedRow();
         first = servicestable.getValueAt(row, 0).toString();
         second = servicestable.getValueAt(row, 1).toString();
@@ -233,15 +240,15 @@ public class Servicesdialog extends javax.swing.JDialog {
         } else {
 
             String insertservice = "INSERT INTO invoice_tb (admin_no_finance,service_code_finance,cost_of_service,date) "
-                    + " VALUES ('" + 10 + "','" + first + "','" + third + "','" + date + "')";
+                    + " VALUES ('" + mtuwetu + "','" + first + "','" + third + "','" + dateservcebooked + "')";
 
             Data data = new Data();
             data.ExecuteSQL(insertservice);
             data = null;
-            
+
             JOptionPane.showMessageDialog(rootPane, "Registration Completed successfully.");
             dispose();
-            
+
         }
 
     }

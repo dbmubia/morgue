@@ -27,7 +27,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -46,7 +45,6 @@ public class FrmAdmission extends JInternalFrame {
     private JLabel DplaceofDeath;
     private JLabel DdateOfDeath;
     private JTextField DNames, DID, DPLACE, DAGE, TagNo, KNAMES, KID, RELATION, RESIDENCE, ADDRESS, TELEPHONE, KNAMESTWO, KIDTWO, RELATIONTWO, RESIDENCETWO, ADDRESSTWO, TELEPHONETWO;
-    private JXDatePicker DDATEDEATH;
     private JRadioButton male, female;
     private ButtonGroup sex;
     private String sexx,namba;
@@ -168,10 +166,10 @@ public class FrmAdmission extends JInternalFrame {
         DdateOfDeath.setForeground(new Color(186, 190, 198));
         DdateOfDeath.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         DdateOfDeath.setBounds(4, 150, 200, 30);
-
-        DDATEDEATH = new JXDatePicker();
-        DDATEDEATH.setBounds(130, 150, 190, 30);
-        DDATEDEATH.setFont(new Font("Lucida Sans", Font.BOLD, 16));
+//
+//        DDATEDEATH = new JXDatePicker();
+//        DDATEDEATH.setBounds(130, 150, 190, 30);
+//        DDATEDEATH.setFont(new Font("Lucida Sans", Font.BOLD, 16));
 
         DplaceofDeath = new JLabel();
         DplaceofDeath.setText("Place of death :");
@@ -563,7 +561,7 @@ public class FrmAdmission extends JInternalFrame {
         deceased.add(male);
         deceased.add(female);
         deceased.add(DdateOfDeath);
-        deceased.add(DDATEDEATH);
+       // deceased.add(DDATEDEATH);
         deceased.add(DPLACE);
         deceased.add(DplaceofDeath);
         deceased.add(Tag);
@@ -661,7 +659,7 @@ public class FrmAdmission extends JInternalFrame {
         //`AdminNo`, `kufh`.`deceased_tb` (`name`,`deceased_id`,'age`,`sex`,`deathdate`, `Placeofdeath`,`death_nature`)"
 
         String sql = "INSERT INTO deceased_tb (name,deceased_id,age,sex,deathdate,Placeofdeath,death_nature) "
-                + " VALUES ('" + DNames.getText() + "','" + DID.getText() + "','" + DAGE.getText().trim() + "','" + getsex().toString() + "','" + DDATEDEATH.getDate().getDate() + "','" + DPLACE.getText().trim() + "','" + TXTANOD.getText() + "')";
+                + " VALUES ('" + DNames.getText() + "','" + DID.getText() + "','" + DAGE.getText().trim() + "','" + getsex().toString() + "','" + 11 + "','" + DPLACE.getText().trim() + "','" + TXTANOD.getText() + "')";
         Data data = new Data();
         data.ExecuteSQL(sql);
         data = null;

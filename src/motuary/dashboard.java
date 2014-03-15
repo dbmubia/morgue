@@ -8,21 +8,29 @@ package motuary;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 
 /**
  *
  * @author Range_Rover_Sport
  */
-public class dashboard extends javax.swing.JFrame {
+public class dashboard extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form dashboard
      */
-    public dashboard() {
+    public dashboard(int nambaa) { //int nambayamsee
+        admin=nambaa;
         initComponents();
         getservices();
+        load_kin();
+        loaddeathinfo();
+        loadservices();
+        gettotal();
+        getdays();
     }
 
     /**
@@ -36,55 +44,165 @@ public class dashboard extends javax.swing.JFrame {
 
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        holder = new javax.swing.JPanel();
+        holder = new komponenMakeOver.panelmakeOver();
         deceased_name_panel = new javax.swing.JLabel();
+        servicestabedpane = new javax.swing.JTabbedPane();
+        jPanel1 = new komponenMakeOver.panelmakeOver();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        personalpanel = new javax.swing.JPanel();
-        personalinfopanel = new javax.swing.JPanel();
+        personalpanel = new komponenMakeOver.panelmakeOver();
+        personalinfopanel = new komponenMakeOver.panelmakeOver();
         deceasedlabel = new javax.swing.JLabel();
-        dprsonaldtails = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        id_panel_txt = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        agetxtcpanel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        sexcpanel = new javax.swing.JLabel();
         residencecpanel = new javax.swing.JLabel();
-        residencecppanel = new javax.swing.JLabel();
+        countylabel = new javax.swing.JLabel();
+        deceasedtxt = new javax.swing.JTextField();
+        id_panel_txt = new javax.swing.JTextField();
+        agetxtfield = new javax.swing.JTextField();
+        sexcpanel = new javax.swing.JTextField();
+        residencetxt = new javax.swing.JTextField();
+        countytxt = new javax.swing.JTextField();
+        kininfopanel = new komponenMakeOver.panelmakeOver();
+        jPanel3 = new komponenMakeOver.panelmakeOver();
         jLabel5 = new javax.swing.JLabel();
-        countycpanel = new javax.swing.JLabel();
-        kininfopanel = new javax.swing.JPanel();
-        deathpanel = new javax.swing.JPanel();
-        print_bt = new javax.swing.JButton();
-        edit_bt = new javax.swing.JButton();
-        savebt = new javax.swing.JButton();
+        fnamecontactkin = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        mnamecontactkin = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        lnamecontactkin = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        phonecontactkin = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        relationkin = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        residencecontactkin = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        postalcontactkin = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        simucontactkin = new javax.swing.JTextField();
+        jPanel4 = new komponenMakeOver.panelmakeOver();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        deathpanel = new komponenMakeOver.panelmakeOver();
+        jLabel21 = new javax.swing.JLabel();
+        ddatetx = new javax.swing.JTextField();
+        plceofdeath = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        natureofdeath = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        causedeath = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descdeath = new javax.swing.JTextArea();
+        jLabel26 = new javax.swing.JLabel();
+        burialpermitno = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        obno = new javax.swing.JTextField();
+        jPanel5 = new komponenMakeOver.panelmakeOver();
+        jLabel28 = new javax.swing.JLabel();
+        karaoname = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        karaonumber = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        karaorank = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        karaostation = new javax.swing.JTextField();
+        jPanel6 = new komponenMakeOver.panelmakeOver();
+        print_bt = new komponenMakeOver.buttonMakeOverRectangle();
+        edit_bt = new komponenMakeOver.buttonMakeOverRectangle();
+        savebt = new komponenMakeOver.buttonMakeOverRectangle();
+        infopanel = new komponenMakeOver.panelmakeOver();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        daystxt = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel2 = new komponenMakeOver.panelmakeOver();
+        jLabel32 = new javax.swing.JLabel();
+        totalinvoice = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        servinvoice = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
         jButton4.setText("jButton4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        deceased_name_panel.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        deceased_name_panel.setForeground(new java.awt.Color(242, 242, 189));
         deceased_name_panel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         deceasedlabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        deceasedlabel.setForeground(new java.awt.Color(242, 242, 189));
         deceasedlabel.setText("Deceased");
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 189));
         jLabel1.setText("I.D");
 
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 189));
         jLabel3.setText("Age");
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(242, 242, 189));
         jLabel4.setText("Sex");
 
         residencecpanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
+        residencecpanel.setForeground(new java.awt.Color(242, 242, 189));
         residencecpanel.setText("Residence");
 
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
-        jLabel5.setText("County");
+        countylabel.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
+        countylabel.setForeground(new java.awt.Color(242, 242, 189));
+        countylabel.setText("County");
+
+        deceasedtxt.setEditable(false);
+        deceasedtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deceasedtxtActionPerformed(evt);
+            }
+        });
+
+        id_panel_txt.setEditable(false);
+
+        agetxtfield.setEditable(false);
+        agetxtfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agetxtfieldActionPerformed(evt);
+            }
+        });
+
+        sexcpanel.setEditable(false);
+        sexcpanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexcpanelActionPerformed(evt);
+            }
+        });
+
+        residencetxt.setEditable(false);
+
+        countytxt.setEditable(false);
 
         javax.swing.GroupLayout personalinfopanelLayout = new javax.swing.GroupLayout(personalinfopanel);
         personalinfopanel.setLayout(personalinfopanelLayout);
@@ -95,35 +213,40 @@ public class dashboard extends javax.swing.JFrame {
                 .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalinfopanelLayout.createSequentialGroup()
                         .addComponent(deceasedlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dprsonaldtails, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deceasedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(personalinfopanelLayout.createSequentialGroup()
                         .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(residencecpanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
                         .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(personalinfopanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap(284, Short.MAX_VALUE))
-                            .addGroup(personalinfopanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(id_panel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(personalinfopanelLayout.createSequentialGroup()
-                                        .addComponent(agetxtcpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(sexcpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(personalinfopanelLayout.createSequentialGroup()
-                                        .addComponent(residencecppanel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(countycpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addGap(228, 228, 228)
+                                        .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(personalinfopanelLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(46, 46, 46)
+                                                .addComponent(sexcpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(personalinfopanelLayout.createSequentialGroup()
+                                                .addComponent(countylabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(countytxt)))
+                                        .addContainerGap(83, Short.MAX_VALUE))))
+                            .addGroup(personalinfopanelLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(id_panel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(agetxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(residencetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         personalinfopanelLayout.setVerticalGroup(
             personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,33 +254,28 @@ public class dashboard extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deceasedlabel)
-                    .addComponent(dprsonaldtails, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deceasedtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_panel_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
+                .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(id_panel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(personalinfopanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGroup(personalinfopanelLayout.createSequentialGroup()
-                            .addComponent(agetxtcpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(1, 1, 1)))
-                    .addComponent(jLabel4)
-                    .addComponent(sexcpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(personalinfopanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(residencecpanel)
-                            .addComponent(residencecppanel)
-                            .addComponent(jLabel5)))
-                    .addGroup(personalinfopanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(countycpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(74, 74, 74))
+                        .addGap(0, 2, Short.MAX_VALUE))
+                    .addComponent(agetxtfield, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sexcpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addGap(18, 18, 18)
+                .addGroup(personalinfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(residencecpanel)
+                    .addComponent(countylabel)
+                    .addComponent(residencetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countytxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
         );
 
         javax.swing.GroupLayout personalpanelLayout = new javax.swing.GroupLayout(personalpanel);
@@ -165,49 +283,495 @@ public class dashboard extends javax.swing.JFrame {
         personalpanelLayout.setHorizontalGroup(
             personalpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(personalpanelLayout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(28, 28, 28)
                 .addComponent(personalinfopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         personalpanelLayout.setVerticalGroup(
             personalpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(personalpanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(personalinfopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Personal Details", personalpanel);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact person", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 2, 12), java.awt.Color.black)); // NOI18N
+        jPanel3.setForeground(new java.awt.Color(242, 242, 189));
+
+        jLabel5.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel5.setText("FirstName");
+
+        fnamecontactkin.setEditable(false);
+        fnamecontactkin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fnamecontactkinActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel6.setText("Middle Name");
+
+        mnamecontactkin.setEditable(false);
+
+        jLabel7.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel7.setText("Last Name");
+
+        lnamecontactkin.setEditable(false);
+
+        jLabel8.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel8.setText("ID/ P.P No.");
+
+        phonecontactkin.setEditable(false);
+
+        jLabel9.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel9.setText("Relation");
+
+        relationkin.setEditable(false);
+
+        jLabel10.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel10.setText("Residence");
+
+        residencecontactkin.setEditable(false);
+
+        jLabel11.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel11.setText("Postal Add");
+
+        postalcontactkin.setEditable(false);
+
+        jLabel12.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel12.setText("Phone No.");
+
+        simucontactkin.setEditable(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(postalcontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(fnamecontactkin)
+                        .addComponent(phonecontactkin, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mnamecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(relationkin)
+                            .addComponent(simucontactkin))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lnamecontactkin)
+                    .addComponent(residencecontactkin, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(fnamecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(mnamecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(lnamecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(phonecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(relationkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(residencecontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(postalcontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(simucontactkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(" "));
+        jPanel4.setForeground(new java.awt.Color(242, 242, 189));
+
+        jLabel13.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel13.setText("FirstName");
+
+        jLabel14.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel14.setText("ID/ P.P No.");
+
+        jLabel15.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel15.setText("Postal Add");
+
+        jTextField9.setEditable(false);
+
+        jTextField10.setEditable(false);
+
+        jTextField11.setEditable(false);
+
+        jLabel16.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel16.setText("Middle Name");
+
+        jLabel17.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel17.setText("Relation");
+
+        jLabel18.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel18.setText("Phone No.");
+
+        jTextField12.setEditable(false);
+
+        jTextField13.setEditable(false);
+
+        jTextField14.setEditable(false);
+
+        jTextField15.setEditable(false);
+
+        jTextField16.setEditable(false);
+
+        jLabel19.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel19.setText("Residence");
+
+        jLabel20.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel20.setText("Last Name");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField11)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField13)
+                            .addComponent(jTextField12))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField15)
+                    .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout kininfopanelLayout = new javax.swing.GroupLayout(kininfopanel);
         kininfopanel.setLayout(kininfopanelLayout);
         kininfopanelLayout.setHorizontalGroup(
             kininfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGroup(kininfopanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(kininfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         kininfopanelLayout.setVerticalGroup(
             kininfopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGroup(kininfopanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane1.addTab("Kin Information", kininfopanel);
+
+        jLabel21.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel21.setText("Death Date.");
+
+        ddatetx.setEditable(false);
+
+        plceofdeath.setEditable(false);
+
+        jLabel22.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel22.setText("Place of Death");
+
+        jLabel23.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel23.setText("Death Nature ");
+
+        natureofdeath.setEditable(false);
+        natureofdeath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                natureofdeathActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel24.setText("Cause of Death");
+
+        causedeath.setEditable(false);
+
+        jLabel25.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel25.setText("Death Description");
+
+        descdeath.setEditable(false);
+        descdeath.setColumns(20);
+        descdeath.setRows(5);
+        jScrollPane1.setViewportView(descdeath);
+
+        jLabel26.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel26.setText("Burial Permit No.");
+
+        burialpermitno.setEditable(false);
+        burialpermitno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                burialpermitnoActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel27.setText("Police OB case No.");
+
+        obno.setEditable(false);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Police Details"));
+        jPanel5.setForeground(new java.awt.Color(242, 242, 189));
+
+        jLabel28.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel28.setText("Name");
+
+        karaoname.setEditable(false);
+
+        jLabel29.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel29.setText("Service No");
+
+        karaonumber.setEditable(false);
+
+        jLabel30.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel30.setText("Rank.");
+
+        karaorank.setEditable(false);
+        karaorank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                karaorankActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel31.setText("Police Station");
+
+        karaostation.setEditable(false);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(karaoname)
+                            .addComponent(karaonumber)
+                            .addComponent(karaorank, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(karaostation, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(karaoname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(karaonumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(karaorank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(karaostation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout deathpanelLayout = new javax.swing.GroupLayout(deathpanel);
         deathpanel.setLayout(deathpanelLayout);
         deathpanelLayout.setHorizontalGroup(
             deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGroup(deathpanelLayout.createSequentialGroup()
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(deathpanelLayout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deathpanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel24)
+                            .addGap(18, 18, 18)))
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(obno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ddatetx)
+                            .addComponent(causedeath)
+                            .addComponent(burialpermitno, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(4, 4, 4)
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addComponent(plceofdeath, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(natureofdeath, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         deathpanelLayout.setVerticalGroup(
             deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGroup(deathpanelLayout.createSequentialGroup()
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(ddatetx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plceofdeath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)))
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(natureofdeath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel24)
+                        .addComponent(causedeath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel25))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(burialpermitno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))
+                        .addGap(26, 26, 26)
+                        .addGroup(deathpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(obno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(deathpanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Death Information", deathpanel);
 
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 780, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 330, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Post Moterm Destails", jPanel6);
+
+        print_bt.setForeground(new java.awt.Color(242, 242, 189));
         print_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PRINT.PNG"))); // NOI18N
         print_bt.setText("Print");
 
+        edit_bt.setForeground(new java.awt.Color(242, 242, 189));
         edit_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MODIFY.PNG"))); // NOI18N
         edit_bt.setText("Edit");
         edit_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -216,45 +780,210 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
+        savebt.setForeground(new java.awt.Color(242, 242, 189));
         savebt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BKup.png"))); // NOI18N
-        savebt.setText("Save");
+        savebt.setText("Update");
         savebt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 savebtActionPerformed(evt);
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(print_bt)
+                        .addGap(47, 47, 47)
+                        .addComponent(edit_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(savebt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(savebt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(print_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        servicestabedpane.addTab("Information Details", jPanel1);
+
+        jLabel33.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel33.setText("Period of stay");
+
+        jLabel34.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel34.setText("Assigned Freezer.");
+
+        jLabel32.setForeground(new java.awt.Color(242, 242, 189));
+        jLabel32.setText("TOTAL BALANCE:");
+
+        totalinvoice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        totalinvoice.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalinvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalinvoiceActionPerformed(evt);
+            }
+        });
+
+        servinvoice.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Service Code", "Service Name", "Date Requested", "Cost", "Requester Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(servinvoice);
+        if (servinvoice.getColumnModel().getColumnCount() > 0) {
+            servinvoice.getColumnModel().getColumn(0).setResizable(false);
+            servinvoice.getColumnModel().getColumn(0).setPreferredWidth(100);
+            servinvoice.getColumnModel().getColumn(1).setResizable(false);
+            servinvoice.getColumnModel().getColumn(1).setPreferredWidth(300);
+            servinvoice.getColumnModel().getColumn(2).setResizable(false);
+            servinvoice.getColumnModel().getColumn(3).setResizable(false);
+            servinvoice.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1QN.PNG"))); // NOI18N
+        jButton1.setText("Add Service");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EXIT.PNG"))); // NOI18N
+        jButton2.setText("Remove Service");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RELOAD.PNG"))); // NOI18N
+        jButton5.setText("Refresh.");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(totalinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(jButton1)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton2)
+                                .addGap(38, 38, 38)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton5))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(totalinvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
+        );
+
+        javax.swing.GroupLayout infopanelLayout = new javax.swing.GroupLayout(infopanel);
+        infopanel.setLayout(infopanelLayout);
+        infopanelLayout.setHorizontalGroup(
+            infopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infopanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(daystxt, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(jLabel34)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(403, Short.MAX_VALUE))
+            .addGroup(infopanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infopanelLayout.setVerticalGroup(
+            infopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infopanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(infopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel34)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(infopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel33)
+                        .addComponent(daystxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        servicestabedpane.addTab("Services Info", infopanel);
+
         javax.swing.GroupLayout holderLayout = new javax.swing.GroupLayout(holder);
         holder.setLayout(holderLayout);
         holderLayout.setHorizontalGroup(
             holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(holderLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deceased_name_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1))
-                .addContainerGap())
-            .addGroup(holderLayout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(print_bt)
-                .addGap(60, 60, 60)
-                .addComponent(edit_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(savebt)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(holderLayout.createSequentialGroup()
+                        .addComponent(servicestabedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, holderLayout.createSequentialGroup()
+                        .addComponent(deceased_name_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         holderLayout.setVerticalGroup(
             holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(holderLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deceased_name_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(holderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(print_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(savebt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(servicestabedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,19 +994,57 @@ public class dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(holder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(holder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void edit_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_btActionPerformed
-
     private void savebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_savebtActionPerformed
+
+    private void edit_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_btActionPerformed
+        activateedit();        // TODO add your handling code here:
+    }//GEN-LAST:event_edit_btActionPerformed
+
+    private void karaorankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karaorankActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_karaorankActionPerformed
+
+    private void burialpermitnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burialpermitnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_burialpermitnoActionPerformed
+
+    private void natureofdeathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_natureofdeathActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_natureofdeathActionPerformed
+
+    private void fnamecontactkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnamecontactkinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fnamecontactkinActionPerformed
+
+    private void sexcpanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexcpanelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexcpanelActionPerformed
+
+    private void agetxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agetxtfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agetxtfieldActionPerformed
+
+    private void deceasedtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deceasedtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deceasedtxtActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void totalinvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalinvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalinvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,7 +1057,7 @@ public class dashboard extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -309,79 +1076,402 @@ public class dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboard().setVisible(true);
+                new dashboard(29).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel agetxtcpanel;
-    private javax.swing.JLabel countycpanel;
+    private javax.swing.JTextField agetxtfield;
+    private javax.swing.JTextField burialpermitno;
+    private javax.swing.JTextField causedeath;
+    private javax.swing.JLabel countylabel;
+    private javax.swing.JTextField countytxt;
+    private javax.swing.JTextField daystxt;
+    private javax.swing.JTextField ddatetx;
     private javax.swing.JPanel deathpanel;
     private javax.swing.JLabel deceased_name_panel;
     private javax.swing.JLabel deceasedlabel;
-    private javax.swing.JLabel dprsonaldtails;
+    private javax.swing.JTextField deceasedtxt;
+    private javax.swing.JTextArea descdeath;
     private javax.swing.JButton edit_bt;
+    private javax.swing.JTextField fnamecontactkin;
     private javax.swing.JPanel holder;
-    private javax.swing.JLabel id_panel_txt;
+    private javax.swing.JTextField id_panel_txt;
+    private javax.swing.JPanel infopanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField karaoname;
+    private javax.swing.JTextField karaonumber;
+    private javax.swing.JTextField karaorank;
+    private javax.swing.JTextField karaostation;
     private javax.swing.JPanel kininfopanel;
+    private javax.swing.JTextField lnamecontactkin;
+    private javax.swing.JTextField mnamecontactkin;
+    private javax.swing.JTextField natureofdeath;
+    private javax.swing.JTextField obno;
     private javax.swing.JPanel personalinfopanel;
     private javax.swing.JPanel personalpanel;
+    private javax.swing.JTextField phonecontactkin;
+    private javax.swing.JTextField plceofdeath;
+    private javax.swing.JTextField postalcontactkin;
     private javax.swing.JButton print_bt;
+    private javax.swing.JTextField relationkin;
+    private javax.swing.JTextField residencecontactkin;
     private javax.swing.JLabel residencecpanel;
-    private javax.swing.JLabel residencecppanel;
+    private javax.swing.JTextField residencetxt;
     private javax.swing.JButton savebt;
-    private javax.swing.JLabel sexcpanel;
+    private javax.swing.JTabbedPane servicestabedpane;
+    private javax.swing.JTable servinvoice;
+    private javax.swing.JTextField sexcpanel;
+    private javax.swing.JTextField simucontactkin;
+    private javax.swing.JTextField totalinvoice;
     // End of variables declaration//GEN-END:variables
-    private String tname, tmname, tlaname, names, id, age, sex, residence, county;
-    
+    private String tname, tmname, tfname, tlaname, id, natid, age, dob, sex, residence, county;
+    private String fkinmne, lkinme, idnok, relation, kinres, postaladd, phonekin, adminkin, cont;
+    private String msee, deathdtae, wapi, causeofdeth, desc, polinorm, burialperm, notice, polileta, serviceno, pfname, plname, station, rank;
+    private int admin;
+    private static java.util.Date tdysdate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(tdysdate.getTime());
+
     private void getservices() {
-        
+           
         try {
-            String strSQL = "SELECT * from deceased_tb where AdminNo = 15";
-            ResultSet rs;
+            String strSQL = "SELECT * from deceased_tb where AdminNo = '"+admin+"'";
+
+            String getage = "SELECT YEAR(deaths_info.deathdate) - YEAR(deceased_tb.d_o_b) AS Age from deceased_tb, deaths_info where deaths_info.admission_repo = '"+ admin +"' AND (deaths_info.admission_repo = deceased_tb.AdminNo)";
+
+            ResultSet rs, agers;
+            DBConnection getCn = new DBConnection();
+
+            Connection cn = getCn.getConnection();
+            Connection cn2 = getCn.getConnection();
+
+            Statement st = cn.createStatement();
+            Statement st2 = cn2.createStatement();
+
+            rs = st.executeQuery(strSQL);
+            agers = st2.executeQuery(getage);
+
+            int count = 0;
+
+            while (rs.next()) {
+                //count = count + 1;
+
+                id = rs.getString(1);
+                tname = rs.getString(2);
+                tmname = rs.getString(3);
+                tlaname = rs.getString(4);
+                tfname = rs.getString(5);
+
+                natid = rs.getString(6);
+                dob = rs.getString(7);
+                sex = rs.getString(8);
+                residence = rs.getString(9);
+                county = rs.getString(10);
+
+                deceased_name_panel.setText("KUFH/" + id + "/2014       " + tname + " " + tmname + "  " + tlaname + " " + tfname);
+                deceasedtxt.setText(tname + " " + tmname + "  " + tlaname + "   " + tfname);
+                id_panel_txt.setText(natid);
+                sexcpanel.setText(sex);
+                residencetxt.setText(residence);
+                countytxt.setText(county);
+
+            }
+
+            if (agers.next()) {
+                agetxtfield.setText(agers.getString(1));
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
+    }
+
+    private void load_kin() {
+        try {
+            String strSQL = "SELECT * from nextkin where Admin_no = '" + admin + "'";
+            ResultSet kinrs;
             DBConnection getCn = new DBConnection();
             Connection cn = getCn.getConnection();
             Statement st = cn.createStatement();
-            
-            rs = st.executeQuery(strSQL);
-            
+            kinrs = st.executeQuery(strSQL);
+
             int count = 0;
-            
-            if (rs.next()) {
-               //count = count + 1;
-               // JOptionPane.showMessageDialog(null, rs);
-                
-                tname = rs.getString(1);
-                tmname = rs.getString(2);
-                tlaname = rs.getString(3);
-                id = rs.getString(4);
-                age = rs.getString(5);
-                sex = rs.getString(6);
-                residence = rs.getString(7);
-                county = rs.getString(8);
-                
-                deceased_name_panel.setText(tname + tmname + tlaname);
-                id_panel_txt.setText(id);
-                sexcpanel.setText(sex);
-                residencecppanel.setText(residence);
-                countycpanel.setText(county);
-                
+
+            while (kinrs.next()) {
+
+                fkinmne = kinrs.getString(1);
+                lkinme = kinrs.getString(2);
+                idnok = kinrs.getString(3);
+                relation = kinrs.getString(4);
+                kinres = kinrs.getString(5);
+
+                postaladd = kinrs.getString(6);
+                phonekin = kinrs.getString(7);
+                cont = kinrs.getString(8);
+                adminkin = kinrs.getString(9);
+
+                fnamecontactkin.setText(fkinmne);
+                mnamecontactkin.setText(lkinme);
+                phonecontactkin.setText(idnok);
+                relationkin.setText(relation);
+                residencecontactkin.setText(kinres);
+                postalcontactkin.setText(postaladd);
+                simucontactkin.setText(phonekin);
+
             }
-            
+
         } catch (Exception e) {
             System.out.println(e);
+
+        }
+
+    }
+
+    private void loaddeathinfo() {
+
+        try {
+            String strSQL = "SELECT * from deaths_info where admission_repo = '" + admin + "'";
+            ResultSet deathrs;
+            DBConnection get = new DBConnection();
+            Connection cn = get.getConnection();
+            Statement st = cn.createStatement();
+            deathrs = st.executeQuery(strSQL);
+
+            int count = 0;
+
+            while (deathrs.next()) {
+
+                fkinmne = deathrs.getString(1);
+                deathdtae = deathrs.getString(2);
+                wapi = deathrs.getString(3);
+                causeofdeth = deathrs.getString(4);
+
+                desc = deathrs.getString(5);
+                polinorm = deathrs.getString(6);
+                burialperm = deathrs.getString(7);
+                notice = deathrs.getString(8);
+                polileta = deathrs.getString(9);
+
+                serviceno = deathrs.getString(10);
+                pfname = deathrs.getString(11);
+                plname = deathrs.getString(12);
+                station = deathrs.getString(13);
+                rank = deathrs.getString(14);
+
+                ddatetx.setText(deathdtae);
+                plceofdeath.setText(wapi);
+                natureofdeath.setText(polinorm);
+
+                causedeath.setText(causeofdeth);
+                descdeath.setText(desc);
+                burialpermitno.setText(burialperm);
+                obno.setText(polileta);
+                karaoname.setText(pfname + " " + plname);
+                karaonumber.setText(serviceno);
+                karaorank.setText(rank);
+                karaostation.setText(station);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
+    }
+
+    private void activateedit() {
+        agetxtfield.setEditable(true);
+        burialpermitno.setEditable(true);
+        causedeath.setEditable(true);
+        countytxt.setEditable(true);
+        ddatetx.setEditable(true);
+        jTextField10.setEditable(true);
+        jTextField11.setEditable(true);
+        jTextField12.setEditable(true);
+        jTextField13.setEditable(true);
+        jTextField14.setEditable(true);
+        jTextField15.setEditable(true);
+        jTextField16.setEditable(true);
+        jTextField9.setEditable(true);
+        karaoname.setEditable(true);
+        karaonumber.setEditable(true);
+        karaorank.setEditable(true);
+        karaostation.setEditable(true);
+        lnamecontactkin.setEditable(true);
+        mnamecontactkin.setEditable(true);
+        natureofdeath.setEditable(true);
+        obno.setEditable(true);
+        phonecontactkin.setEditable(true);
+        plceofdeath.setEditable(true);
+        postalcontactkin.setEditable(true);
+        relationkin.setEditable(true);
+        residencecontactkin.setEditable(true);
+        fnamecontactkin.setEditable(true);
+        residencetxt.setEditable(true);
+        sexcpanel.setEditable(true);
+        simucontactkin.setEditable(true);
+    }
+
+    private void loadservices() {
+
+        String one, two, thre, fur, fiv, sis, sefen;
+        int kwan, pil, tat, nne, tan, sita, sefn, eit, zote = 0;
+
+        try {
+            String getinvoice = "SELECT invo.service_code_finance,\n"
+                    + "ser.service_description,\n"
+                    + "invo.cost_of_service,\n"
+                    + "invo.date FROM invoice_tb invo,services ser\n"
+                    + "where admin_no_finance = '" + admin + "' \n"
+                    + "and service_code = service_code_finance;";
+
+            String total = "";
+
+            ResultSet Total1;
+            ResultSet serv;
+
+            DBConnection getCn = new DBConnection();
+
+            Connection cn = getCn.getConnection();
+
+            Statement st = cn.createStatement();
+
+            serv = st.executeQuery(getinvoice);
+
+            servinvoice.setModel(DbUtils.resultSetToTableModel(serv));
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
+    }
+
+    private void gettotal() {
+
+        try {
+            String totalsql = "SELECT invo.cost_of_service\n"
+                    + "FROM invoice_tb invo,services ser\n"
+                    + "where admin_no_finance = '" + admin + "' \n"
+                    + "and service_code = service_code_finance;";
+
+            int total = 0;
+            int info = 0;
+            ResultSet gettotal;
             
+            DBConnection gett = new DBConnection();
+            
+            Connection cnn = gett.getConnection();
+            
+            Statement st = cnn.createStatement();
+            
+            gettotal = st.executeQuery(totalsql);
+
+            while (gettotal.next()) {
+             info = Integer.parseInt(gettotal.getString(1));
+
+                total = total + info;
+            }
+            totalinvoice.setText(" " + total + ".00");
+        } catch (Exception ee) {
+
+            ee.getStackTrace();
+
+        }
+
+    }
+
+    private void getdays() {
+        
+        try {
+        String getdays = "SELECT arrival_date from deceased_tb where AdminNo = 25";//"SELECT DATE(" + sqlDate + ") - DATE(arrival_date) AS days from deceased_tb where AdminNo = 26";
+        
+        System.out.println(sqlDate);
+       
+        
+        ResultSet gettotal;
+        DBConnection gett = new DBConnection();
+        Connection cnn = gett.getConnection();
+        Statement st = cnn.createStatement();
+        gettotal = st.executeQuery(getdays);
+        
+        while(gettotal.next()){
+        
+       // Date arrival = gettotal.getDate(1);
+        
+       
+        
+       // System.out.print(arrival);
+        
         }
         
-    }
-    
+        }
+        catch(Exception ex){
+        ex.printStackTrace();
+        
+        }
+      }
+
 }

@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dispatch" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="29da5689-d8c5-479b-84b5-f8f88551c7ba">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<queryString>
+		<![CDATA[SELECT
+     deceased_tb.`AdminNo` AS deceased_tb_AdminNo,
+     deceased_tb.`title` AS deceased_tb_title,
+     deceased_tb.`first_name` AS deceased_tb_first_name,
+     deceased_tb.`middle_name` AS deceased_tb_middle_name,
+     deceased_tb.`last_name` AS deceased_tb_last_name,
+     nextkin.`f_name` AS nextkin_f_name,
+     nextkin.`l_name` AS nextkin_l_name,
+     nextkin.`Id_nok` AS nextkin_Id_nok,
+     nextkin.`relationship` AS nextkin_relationship,
+     nextkin.`Telephone_no` AS nextkin_Telephone_no,
+     dispatch_tb.`County` AS dispatch_tb_County,
+     dispatch_tb.`Subcounty` AS dispatch_tb_Subcounty,
+     dispatch_tb.`Ward` AS dispatch_tb_Ward,
+     dispatch_tb.`Shoppincenter` AS dispatch_tb_Shoppincenter,
+     dispatch_tb.`NearestPolice` AS dispatch_tb_NearestPolice,
+     deceased_tb.`arrival_date` AS deceased_tb_arrival_date
+FROM
+     `deceased_tb` deceased_tb INNER JOIN `nextkin` nextkin ON deceased_tb.`AdminNo` = nextkin.`Admin_no`
+     INNER JOIN `dispatch_tb` dispatch_tb ON deceased_tb.`AdminNo` = dispatch_tb.`Admin_no`]]>
+	</queryString>
+	<field name="deceased_tb_AdminNo" class="java.lang.Integer"/>
+	<field name="deceased_tb_title" class="java.lang.String"/>
+	<field name="deceased_tb_first_name" class="java.lang.String"/>
+	<field name="deceased_tb_middle_name" class="java.lang.String"/>
+	<field name="deceased_tb_last_name" class="java.lang.String"/>
+	<field name="nextkin_f_name" class="java.lang.String"/>
+	<field name="nextkin_l_name" class="java.lang.String"/>
+	<field name="nextkin_Id_nok" class="java.lang.Integer"/>
+	<field name="nextkin_relationship" class="java.lang.String"/>
+	<field name="nextkin_Telephone_no" class="java.lang.String"/>
+	<field name="dispatch_tb_County" class="java.lang.String"/>
+	<field name="dispatch_tb_Subcounty" class="java.lang.String"/>
+	<field name="dispatch_tb_Ward" class="java.lang.String"/>
+	<field name="dispatch_tb_Shoppincenter" class="java.lang.String"/>
+	<field name="dispatch_tb_NearestPolice" class="java.lang.String"/>
+	<field name="deceased_tb_arrival_date" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="481" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="ef257751-0f31-4b8e-bb05-3089a8016963" x="16" y="306" width="529" height="124"/>
+			</rectangle>
+			<image>
+				<reportElement uuid="c33d046e-c72c-4e81-b846-b9a9d37a1faf" x="48" y="10" width="68" height="61"/>
+				<imageExpression><![CDATA["C:\\Users\\Range_Rover_Sport\\Pictures\\gsa\\header.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8fec99b3-7594-42da-85cd-d370e562cd7a" x="163" y="0" width="286" height="20"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[KENYATTA UNIVERSITY FUNERAL HOME ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38968854-47b7-4763-af77-6affa6175299" x="116" y="30" width="99" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[School of Health Sciences.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31ecb6ae-8328-4a84-a5bd-db8f0f894eda" x="116" y="43" width="60" height="28"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[P.O Box 43844 00100 GPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa67df40-8870-436c-9632-1e931b3cc228" x="239" y="43" width="120" height="16"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CLEARANCE  FORM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ddb11533-84f9-45bb-85c1-f05dcffacecf" x="402" y="36" width="143" height="23"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Email: coordinator-kufh@kufh.ac.ke Phone: 0715-269202,020-3599054]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f29068ce-195f-411a-a7f5-527dff397bbb" x="23" y="93" width="40" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.O.A]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="56f59ab3-d31e-441e-ace3-5bc50d37302e" x="63" y="106" width="72" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="d6ea65e4-11e7-4e56-aca4-f971f571c367" x="135" y="93" width="91" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Dispatch]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="6da609fa-a709-4351-a0e3-91a83eae69c9" x="215" y="106" width="76" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3cad4d8d-97c2-4e39-aaec-52f18e0f6856" x="302" y="93" width="28" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d8b5e679-19f6-48cb-8cb5-b27c13b7ea39" x="337" y="107" width="65" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="48ba35fd-d638-4cfe-9eed-c57c6c72d2e9" x="402" y="93" width="47" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADM NO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="1344f25c-feb4-44f2-86e0-ac80047d7f34" x="449" y="106" width="73" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="317eb271-d89c-43f3-8ec6-af2102f64ac0" x="23" y="138" width="93" height="20"/>
+				<textElement/>
+				<text><![CDATA[Name of Deceased]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12c9f62e-a50c-42bd-9f9c-30ad53ea7fdf" x="54" y="159" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Next Of Kin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b3034102-61e1-4a05-8c35-136b24c55aad" x="48" y="179" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Relationship.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="988a425b-43e9-432d-bc43-5cc3d354d1e6" x="116" y="157" width="154" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="217ffb53-279f-4f7e-9c34-335e2622f4bc" x="116" y="177" width="154" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="d0c8d0a5-57ab-4321-8184-2598308d0bff" x="115" y="196" width="154" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement uuid="cd6b5ee5-ec32-461b-8c40-d4eaa58e94d2" x="226" y="93" width="63" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="037574a2-0fa3-4e70-b496-8dc49507eee2" x="116" y="138" width="29" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3da43cfe-32f9-47d2-bcb3-c630d5caff46" x="144" y="137" width="32" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="18e211d7-0133-4021-b478-4ca9905ac128" x="185" y="137" width="41" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_middle_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement uuid="753ac4c9-c917-4146-b1bc-0a166b25649c" x="347" y="93" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="390eca4f-819d-45ee-8c10-0ae57f163045" x="106" y="361" width="38" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_f_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e567865c-8c1e-4257-8f3a-6808c8b1d8f2" x="163" y="159" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_l_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="58ffabcc-d086-4732-a779-8b1fdab66508" x="345" y="139" width="27" height="20"/>
+				<textElement/>
+				<text><![CDATA[I.D]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8e141c9b-e447-4b3f-98f5-1abe134b78ac" x="381" y="156" width="125" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="dbf28d47-d07f-481a-a225-d5f40d21a8c9" x="347" y="159" width="27" height="20"/>
+				<textElement/>
+				<text><![CDATA[I.D]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d172a496-98b0-46d1-83db-9bbae1f7e32a" x="381" y="176" width="125" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="1c0e7e2e-4e8c-4682-a0cf-a7bfd48c450e" x="116" y="179" width="99" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_relationship}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2fef0dfc-91ff-47f8-88e2-f5cec4dee1ac" x="381" y="159" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_Id_nok}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="601c11e1-43ca-494a-a881-02aab10a9ea9" x="481" y="93" width="13" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_AdminNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9843957f-a3ca-40f2-83cb-95c116d57ca0" x="449" y="93" width="39" height="18"/>
+				<textElement/>
+				<text><![CDATA[KUFH/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="21ecebca-c689-4146-b392-ec3b55cd708b" x="494" y="93" width="43" height="20"/>
+				<textElement/>
+				<text><![CDATA[/2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="35df768b-46e9-41e5-8c86-6bc7f05755f9" x="11" y="198" width="174" height="13"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[BURIAL DESTINATION DETAILS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e17e977-09f9-49e8-9fd5-122a6d2f9525" x="15" y="221" width="50" height="17"/>
+				<textElement/>
+				<text><![CDATA[County]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="92f638ad-5a1d-4b73-b299-b9e706a87458" x="65" y="238" width="111" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="acf92317-56fd-4e3f-93c2-d7f4a1316aad" x="185" y="220" width="54" height="20"/>
+				<textElement/>
+				<text><![CDATA[Subcounty]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="82dc0215-aa8b-41e2-918b-9b34b80f1595" x="248" y="237" width="111" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="2887ee92-fde6-46f0-b53c-ca3829daef95" x="365" y="221" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ward]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="820201e0-3970-442e-a876-181c55695235" x="402" y="236" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="ad66af6b-856d-49ac-ba0a-05821951d76c" x="15" y="241" width="50" height="15"/>
+				<textElement/>
+				<text><![CDATA[Village]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ee0e3849-0faf-4342-9230-07e14f125297" x="65" y="256" width="113" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="27809572-f130-4677-88ad-4cbd81cbf57f" x="189" y="243" width="113" height="14"/>
+				<textElement/>
+				<text><![CDATA[Nearest Police Station.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="193b96c7-fe41-4f24-87e6-5f3ae1c8f5c4" x="306" y="257" width="134" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="1a17929e-396e-4229-827d-c188b256e0a7" x="85" y="223" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dispatch_tb_County}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ca2288bd-fb63-4f05-b74d-57251e904123" x="259" y="223" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dispatch_tb_Subcounty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d34d94dd-e0dc-44e0-9fe0-53f8e2e9bf47" x="412" y="223" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dispatch_tb_Ward}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d103e8ca-fec1-48a0-9683-320de7dcb97b" x="76" y="243" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dispatch_tb_Shoppincenter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0edba125-69a4-421f-a363-bb375f4bd949" x="312" y="243" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dispatch_tb_NearestPolice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a8451506-3952-4658-acc3-3b0d8cb0d4ad" x="23" y="274" width="479" height="31"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[NOTE: Relatives to check and confirm the Name Tag and number on the body before removing the body removing the body from the parlour and thereafter sign below:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fee7e219-2ad5-43cb-b3f7-b54c9bba9f6c" x="23" y="315" width="82" height="19"/>
+				<textElement/>
+				<text><![CDATA[Burial Permit No:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="96509ec4-9675-4395-be44-13ab8ca68aa8" x="105" y="325" width="73" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b00fb553-4509-4726-98cd-61072b63eb15" x="186" y="316" width="83" height="15"/>
+				<textElement/>
+				<text><![CDATA[Invoice Number:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8ac3b876-0604-4832-8153-e71708bdcca8" x="272" y="324" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b1d16ca3-8fbd-4827-8951-327daf306e19" x="372" y="315" width="43" height="20"/>
+				<textElement/>
+				<text><![CDATA[Amount:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51ef001c-4c22-4938-aaa3-ec24f06c4139" x="412" y="323" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="c3690e1e-19c1-4a6f-a9b7-0a83df123a02" x="23" y="331" width="82" height="20"/>
+				<textElement/>
+				<text><![CDATA[Receipt No:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="745e1817-aa5f-46d8-8b68-00fb8c14131a" x="92" y="339" width="93" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="de2cd8e9-2631-40de-a574-0a98b4f32e0a" x="203" y="332" width="82" height="19"/>
+				<textElement/>
+				<text><![CDATA[Amount:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="7d37376e-5df0-44c6-9698-e0f430c80d9f" x="269" y="340" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="43f1d45a-2823-467a-b300-ec4ffec20ce7" x="370" y="331" width="79" height="16"/>
+				<textElement/>
+				<text><![CDATA[Waiver Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="617597a7-3fa2-4934-852f-afb67bf52e96" x="444" y="341" width="77" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="d074c157-5c49-438a-bcdb-20f0a316f752" x="23" y="366" width="82" height="14"/>
+				<textElement/>
+				<text><![CDATA[Next Of Kin]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b436ba7b-c5dc-4145-8c98-ff5b87ab2326" x="105" y="376" width="108" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="91428cff-a9f1-47e8-bc10-b57347410fd5" x="124" y="159" width="29" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_f_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf5f33d5-86c8-4e23-9c71-429347a7f0af" x="159" y="361" width="44" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nextkin_l_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6af24634-ed7d-49bf-9d28-d1c7cd11d2bb" x="230" y="366" width="40" height="13"/>
+				<textElement/>
+				<text><![CDATA[Sign:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="1fd4a9df-8a6f-4c6c-b063-e324ef79e4a7" x="270" y="374" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="e8fdc4ab-173a-4b55-b0a2-2e021a9eb2ae" x="381" y="367" width="56" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="1addec47-f8ac-4533-ba7c-ca3cffd66dc1" x="437" y="377" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="e7d5991f-01af-45a6-822f-e3897816c57c" x="24" y="380" width="81" height="14"/>
+				<textElement/>
+				<text><![CDATA[Releasing Officer]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3f3957d9-8ef8-49d1-a6de-ad94b93784f8" x="108" y="393" width="107" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="50a03d9d-7713-468c-a460-b47d36aea626" x="230" y="381" width="40" height="13"/>
+				<textElement/>
+				<text><![CDATA[Sign:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="65b7ca8f-cced-4a64-adb2-9649782405e1" x="270" y="392" width="102" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="8c058315-1fd2-4958-9f56-3a61115fc8ba" x="381" y="381" width="56" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0ebc8f01-b96e-4f52-98bb-f73749fb1240" x="437" y="391" width="102" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="0549c9d8-a02a-4ea6-9c74-ca75f81c3188" x="23" y="394" width="93" height="14"/>
+				<textElement/>
+				<text><![CDATA[Authorising Officer:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="98112409-d211-4029-a8f8-eaf84d12149a" x="115" y="407" width="107" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="cb9784fe-8901-44bc-bfff-380dc67863ea" x="229" y="395" width="40" height="13"/>
+				<textElement/>
+				<text><![CDATA[Sign:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="04cbaa45-ec80-4826-bd47-045aef16ffab" x="272" y="408" width="102" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="f558b8ab-7b4d-4f19-8672-45efa919d4a8" x="381" y="396" width="56" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0e6cdf56-82d5-4079-91f0-08c6d60e9bf2" x="440" y="406" width="102" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="c99a053a-adec-47e9-9c7a-2425abb379c6" x="110" y="440" width="76" height="21"/>
+				<textElement/>
+				<text><![CDATA[Approved By:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="be76ff21-b4bc-4771-a7e1-e3697c2b98c7" x="176" y="450" width="154" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="49a1b705-e944-4714-b951-adc234b5cdae" x="347" y="440" width="41" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0e760e93-c694-491b-be5d-9efa596728ee" x="394" y="452" width="100" height="1"/>
+			</line>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement uuid="4aae02da-ef0a-4468-9532-253452bdd1d3" x="402" y="440" width="63" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c0f95cb5-c80b-44e5-897b-b85d9419b986" x="176" y="461" width="161" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CO-ORDINATOR KUFH]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9c4dcea3-168e-4382-9183-56036d227342" x="76" y="93" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_arrival_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="44" splitType="Stretch"/>
+	</summary>
+</jasperReport>
