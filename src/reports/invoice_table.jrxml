@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice_table" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2a77df13-ac7f-4e36-9523-14d8a8622831">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     deceased_tb.`AdminNo` AS deceased_tb_AdminNo,
+     deceased_tb.`title` AS deceased_tb_title,
+     deceased_tb.`first_name` AS deceased_tb_first_name,
+     deceased_tb.`middle_name` AS deceased_tb_middle_name,
+     deceased_tb.`last_name` AS deceased_tb_last_name,
+     deceased_tb.`deceased_id` AS deceased_tb_deceased_id,
+     invoice_tb.`finance_serial` AS invoice_tb_finance_serial,
+     invoice_tb.`admin_no_finance` AS invoice_tb_admin_no_finance,
+     invoice_tb.`service_code_finance` AS invoice_tb_service_code_finance,
+     invoice_tb.`cost_of_service` AS invoice_tb_cost_of_service,
+     invoice_tb.`date` AS invoice_tb_date
+FROM
+     `deceased_tb` deceased_tb INNER JOIN `invoice_tb` invoice_tb ON deceased_tb.`AdminNo` = invoice_tb.`admin_no_finance`
+WHERE deceased_tb.AdminNo ='25']]>
+	</queryString>
+	<field name="deceased_tb_AdminNo" class="java.lang.Integer"/>
+	<field name="deceased_tb_title" class="java.lang.String"/>
+	<field name="deceased_tb_first_name" class="java.lang.String"/>
+	<field name="deceased_tb_middle_name" class="java.lang.String"/>
+	<field name="deceased_tb_last_name" class="java.lang.String"/>
+	<field name="deceased_tb_deceased_id" class="java.lang.String"/>
+	<field name="invoice_tb_finance_serial" class="java.lang.Integer"/>
+	<field name="invoice_tb_admin_no_finance" class="java.lang.Integer"/>
+	<field name="invoice_tb_service_code_finance" class="java.lang.String"/>
+	<field name="invoice_tb_cost_of_service" class="java.lang.Double"/>
+	<field name="invoice_tb_date" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -49,6 +49,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JTabbedPane tabs;
     private JPanel bio, deathinfo;
     private JPanel kins;
+
     private int reqpost;
     private JLabel official, Notification, burrialpermit, noticeOfDeath, policeLetter, policename, policename1, Pstation, Prank, Sno, policeheader;
     private JTextField PermitNo, NODeath, OB, PNAME, PNAME2, PoliceStation, SERVICENO;
@@ -76,7 +77,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
     private JTextField DNames, MNAme, LName, DID, DPLACE, Dresidencetxt, TagNo, KFNAME, KFNAME1, KLNAME, KLNAME2, KID, RELATION, RESIDENCE, ADDRESS, TELEPHONE, KNAMESTWO, KIDTWO, RELATIONTWO, RESIDENCETWO, ADDRESSTWO, TELEPHONETWO;
 
     private JRadioButton male, female, contct1, contact2;
-//    ImageIcon alert = new ImageIcon(getClass().getResource("images/success.png"));
     SqlDateModel model = new SqlDateModel();
     JDatePanelImpl datePanel = new JDatePanelImpl(model);
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
@@ -89,7 +89,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
     public Formadmin2() {
 
-        super("Admission", false, true, false, true);
+        super("Admission", false, true, false, false);
 
         initial();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -346,7 +346,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         PTWO.setForeground(new Color(255, 220, 35));
         PTWO.setFont(new Font("Lucida Sans", Font.BOLD, 14));
         PTWO.setIcon(new ImageIcon(""));
-        PTWO.setBounds(395, 30, 200, 30);
+        PTWO.setBounds(455, 30, 200, 30);
 
         kfname = new JLabel();
         kfname.setText("First Name :");
@@ -362,7 +362,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         KNAMESTWO = new komponenMakeOver.textfieldMakeover();
         KNAMESTWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         KNAMESTWO.setForeground(new Color(242, 242, 189));
-        KNAMESTWO.setBounds(345, 60, 220, 30);
+        KNAMESTWO.setBounds(385, 60, 220, 30);
 
         klname = new JLabel();
         klname.setText("Last Name");
@@ -378,7 +378,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         KLNAME2 = new komponenMakeOver.textfieldMakeover();
         KLNAME2.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         KLNAME2.setForeground(new Color(242, 242, 189));
-        KLNAME2.setBounds(345, 100, 220, 30);
+        KLNAME2.setBounds(385, 100, 220, 30);
 
         kid = new JLabel();
         kid.setText("ID/PPNO :");
@@ -401,7 +401,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         KIDTWO = new komponenMakeOver.textfieldMakeover();
         KIDTWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         KIDTWO.setForeground(new Color(242, 242, 189));
-        KIDTWO.setBounds(345, 140, 220, 30);
+        KIDTWO.setBounds(385, 140, 220, 30);
         KIDTWO.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -424,7 +424,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         RELATIONTWO = new komponenMakeOver.textfieldMakeover();
         RELATIONTWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         RELATIONTWO.setForeground(new Color(242, 242, 189));
-        RELATIONTWO.setBounds(345, 180, 220, 30);
+        RELATIONTWO.setBounds(385, 180, 220, 30);
 
         residence = new JLabel();
         residence.setText("Residence");
@@ -440,7 +440,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         RESIDENCETWO = new komponenMakeOver.textfieldMakeover();
         RESIDENCETWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         RESIDENCETWO.setForeground(new Color(242, 242, 189));
-        RESIDENCETWO.setBounds(345, 220, 220, 30);
+        RESIDENCETWO.setBounds(385, 220, 220, 30);
 
         address = new JLabel();
         address.setText("Address :");
@@ -456,7 +456,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         ADDRESSTWO = new komponenMakeOver.textfieldMakeover();
         ADDRESSTWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         ADDRESSTWO.setForeground(new Color(242, 242, 189));
-        ADDRESSTWO.setBounds(345, 260, 220, 30);
+        ADDRESSTWO.setBounds(385, 260, 220, 30);
 
         telephone = new JLabel();
         telephone.setText("Phone No :");
@@ -472,7 +472,7 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         TELEPHONETWO = new komponenMakeOver.textfieldMakeover();
         TELEPHONETWO.setFont(new Font("Lucida Sans", Font.BOLD, 16));
         TELEPHONETWO.setForeground(new Color(242, 242, 189));
-        TELEPHONETWO.setBounds(345, 300, 220, 30);
+        TELEPHONETWO.setBounds(385, 300, 220, 30);
 
         contactpersn = new JLabel();
         contactpersn.setText("Contact Person :");
@@ -484,13 +484,14 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
 
         contct1 = new JRadioButton();
         contactperson.add(contct1);
+        contct1.putClientProperty("JComponennt.sizeVariant", "large");
         contct1.setBorder(null);
-        contct1.setBounds(145, 340, 20, 20);
+        contct1.setBounds(145, 340, 15, 15);
 
         contact2 = new JRadioButton();
         contactperson.add(contact2);
         contact2.setBorder(null);
-        contact2.setBounds(365, 340, 20, 20);
+        contact2.setBounds(395, 340, 15, 15);
 
         nextkin = new komponenMakeOver.buttonMakeOverRectangle();
         nextkin.setBounds(750, 350, 180, 40);
@@ -563,16 +564,18 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         causes.setText("Cause of Death");
         causes.setForeground(new Color(186, 190, 198));
         causes.setFont(new Font("Lucida Sans", Font.BOLD, 14));
-        causes.setBounds(20, 100, 150, 30);
+        causes.setBounds(20, 135, 150, 30);
+        //causes.setBounds(20, 100, 150, 30);
 
         causes_death = new JComboBox(deathcauses);
-        causes_death.setBounds(180, 100, 200, 30);
+        causes_death.setBounds(180, 135, 200, 30);
 
         natureofdeath = new JLabel();
         natureofdeath.setText("Nature of Death");
         natureofdeath.setForeground(new Color(186, 190, 198));
         natureofdeath.setFont(new Font("Lucida Sans", Font.BOLD, 14));
-        natureofdeath.setBounds(20, 135, 150, 30);
+        natureofdeath.setBounds(20, 100, 150, 30);
+        //natureofdeath.setBounds(20, 135, 150, 30);
 
         naturecombo = new JComboBox();
         naturecombo.addItem(" ");
@@ -585,7 +588,8 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
                 ifcop();
             }
         });
-        naturecombo.setBounds(180, 135, 200, 30);
+        naturecombo.setBounds(180, 100, 200, 30);
+        // naturecombo.setBounds(180, 135, 200, 30);
 
         NOD = new JLabel();
         NOD.setText("Description: ");
@@ -919,10 +923,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
                 if (kama == 1) {
 
                     JOptionPane.showMessageDialog(null, "Deceased successfully added, \n please fill in rest of the form as required", "SUCCESS", JOptionPane.PLAIN_MESSAGE, null);
-                    Servicesdialog dia = new Servicesdialog(null, closable, present);
-//            dia.setVisible(true);
-//            dispose();
-
                 } else {
                     JOptionPane.showMessageDialog(this, "       Details Not Added to the Database.", "alert", JOptionPane.WARNING_MESSAGE, null);
                 }
@@ -930,8 +930,6 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
             } catch (Exception we) {
 
                 we.printStackTrace();
-//            dashboard launch = new dashboard(present);
-//            launch.setVisible(true);
             }
         }
 
@@ -949,11 +947,13 @@ public class Formadmin2 extends JInternalFrame implements ActionListener {
         } else if (obbj == netxdeath) {
 
             deathstuff();
-//            servicedialog ser = new servicedialog(null,closable,12);
-//            ser.show();
-//            
-//            dashboard ser = new dashboard();
-//            ser.show();
+            servicedialog ser = new servicedialog(null, closable, present);
+            ser.setVisible(true);
+            
+            dispose();
+
+            dashboard dash = new dashboard(present);
+            dash.setVisible(true);
         }
 
     }

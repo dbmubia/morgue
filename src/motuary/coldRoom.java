@@ -52,7 +52,7 @@ public class coldRoom extends JInternalFrame{
     
     
     
-    private JTextField B1,B2,B3,B4,B5,B6,B7,B8;
+    private JTextField F3AB1,F3AB2,F3AB3,F3AB4,F3AB5,F3AB6,F3AB7,F3AB8;
     private JTextField B9,B10,B11,B12,B13,B14,B15,B16;
     private JTextField B17,B18,B19,B20,B21,B22,B23,B24;
     private JTextField B25,B26,B27,B28,B29,B30,B31,B32;
@@ -102,37 +102,37 @@ public class coldRoom extends JInternalFrame{
         
         ///Frezzer F.NO.3B
         
-        B1=new komponenMakeOver.textfieldColdroomMakeover();
-        B1.setText("B1");
-        B1.setBounds(3, 25, 120, 50);
+        F3AB1=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB1.setText("B1");
+        F3AB1.setBounds(3, 25, 120, 50);
         
-        B2=new komponenMakeOver.textfieldColdroomMakeover();
-        B2.setText("B2");
-        B2.setBounds(127, 25, 120, 50);
+        F3AB2=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB2.setText("B2");
+        F3AB2.setBounds(127, 25, 120, 50);
         
-        B3=new komponenMakeOver.textfieldColdroomMakeover();
-        B3.setText("B3");
-        B3.setBounds(3, 76, 120, 50);
+        F3AB3=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB3.setText("B3");
+        F3AB3.setBounds(3, 76, 120, 50);
         
-        B4=new komponenMakeOver.textfieldColdroomMakeover();
-        B4.setText("B4");
-        B4.setBounds(127, 76, 120, 50);
+        F3AB4=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB4.setText("B4");
+        F3AB4.setBounds(127, 76, 120, 50);
         
-        B5=new komponenMakeOver.textfieldColdroomMakeover();
-        B5.setText("B5");
-        B5.setBounds(3, 127, 120, 50);
+        F3AB5=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB5.setText("B5");
+        F3AB5.setBounds(3, 127, 120, 50);
         
-        B6=new komponenMakeOver.textfieldColdroomMakeover();
-        B6.setText("B6");
-        B6.setBounds(127, 127, 120, 50);
+        F3AB6=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB6.setText("B6");
+        F3AB6.setBounds(127, 127, 120, 50);
         
-        B7=new komponenMakeOver.textfieldColdroomMakeover();
-        B7.setText("B7");
-        B7.setBounds(3, 178, 120, 50);
+        F3AB7=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB7.setText("B7");
+        F3AB7.setBounds(3, 178, 120, 50);
         
-        B8=new komponenMakeOver.textfieldColdroomMakeover();
-        B8.setText("B8");
-        B8.setBounds(127, 178, 120, 50);
+        F3AB8=new komponenMakeOver.textfieldColdroomMakeover();
+        F3AB8.setText("B8");
+        F3AB8.setBounds(127, 178, 120, 50);
         
         FthreeB=new komponenMakeOver.buttonMakeOverRectangle();
         FthreeB.setText("Quick Peek F.NO.3B");
@@ -520,14 +520,14 @@ public class coldRoom extends JInternalFrame{
         threeB.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "F.NO.3A", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.CENTER, new java.awt.Font("Lucida Sans", 1, 16),Color.WHITE));
         threeB.setBackground(Color.yellow);
         threeB.setBounds(0, 0, 250, 300);
-        threeB.add(B1);
-        threeB.add(B2);
-        threeB.add(B3);
-        threeB.add(B4);
-        threeB.add(B5);
-        threeB.add(B6);
-        threeB.add(B7);
-        threeB.add(B8);
+        threeB.add(F3AB1);
+        threeB.add(F3AB2);
+        threeB.add(F3AB3);
+        threeB.add(F3AB4);
+        threeB.add(F3AB5);
+        threeB.add(F3AB6);
+        threeB.add(F3AB7);
+        threeB.add(F3AB8);
         threeB.add(FthreeB);
         
         threeA=new komponenMakeOver.panelmakeOver();

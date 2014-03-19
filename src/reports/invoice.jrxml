@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f1ec242-3e5f-4bb6-b86c-d8578a0bbc00">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="44"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#C3CFD9">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6F3FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#33CC00"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#33CC00"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#33CC00"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#33CC00"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#FAEBD7">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#FFE4BF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#FAEBD7">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#FFE4BF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#FAEBD7">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#FFE4BF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#FAEBD7">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#FFE4BF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#FAEBD7">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#FFE4BF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="getservices" uuid="32af67c0-899a-4aa6-919c-11111a28fa46">
+		<queryString>
+			<![CDATA[SELECT
+     invoice_tb.`finance_serial` AS Record_No,
+     invoice_tb.`service_code_finance` AS Code,
+     services.`service_description` AS Description,
+     invoice_tb.`date` AS Date,
+     invoice_tb.`cost_of_service` AS Cost
+
+FROM
+     `deceased_tb` deceased_tb INNER JOIN `invoice_tb` invoice_tb ON deceased_tb.`AdminNo` = invoice_tb.`admin_no_finance`
+     INNER JOIN `services` services ON invoice_tb.`service_code_finance` = services.`service_code`
+WHERE
+     deceased_tb.AdminNo = '29']]>
+		</queryString>
+		<field name="Record_No" class="java.lang.Integer"/>
+		<field name="Code" class="java.lang.String"/>
+		<field name="Description" class="java.lang.String"/>
+		<field name="Date" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Cost" class="java.lang.Double"/>
+		<variable name="total" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$F{Cost}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="admin" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     deceased_tb.`AdminNo` AS deceased_tb_AdminNo,
+     deceased_tb.`title` AS deceased_tb_title,
+     deceased_tb.`first_name` AS deceased_tb_first_name,
+     deceased_tb.`middle_name` AS deceased_tb_middle_name,
+     deceased_tb.`last_name` AS deceased_tb_last_name,
+     deceased_tb.`deceased_id` AS deceased_tb_deceased_id
+FROM
+     `deceased_tb` deceased_tb
+WHERE
+     deceased_tb.AdminNo =$P{admin}]]>
+	</queryString>
+	<field name="deceased_tb_AdminNo" class="java.lang.Integer"/>
+	<field name="deceased_tb_title" class="java.lang.String"/>
+	<field name="deceased_tb_first_name" class="java.lang.String"/>
+	<field name="deceased_tb_middle_name" class="java.lang.String"/>
+	<field name="deceased_tb_last_name" class="java.lang.String"/>
+	<field name="deceased_tb_deceased_id" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement uuid="78c061a6-85b6-4d62-b7fe-2d4a55f75852" x="40" y="2" width="68" height="77"/>
+				<imageExpression><![CDATA["C:\\Users\\Range_Rover_Sport\\Pictures\\gsa\\header.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="e2f72b12-585d-4713-9153-6823a663fa99" x="127" y="0" width="286" height="20"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[KENYATTA UNIVERSITY FUNERAL HOME ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="51fc46c8-e9cc-4fd3-a0d5-63f71ea4fe8c" x="412" y="25" width="143" height="21"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Email: coordinator-kufh@kufh.ac.ke Phone: 0715-269202,020-3599054]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b973a1e2-0fa0-4245-b581-cf4ace723aff" x="108" y="33" width="99" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[School of Health Sciences.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7a94110d-ee8b-4142-97e4-cb535f756b7d" x="108" y="46" width="64" height="28"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[P.O Box 43844 00100 GPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b8e48cb-91ae-4883-9c30-a425ad263d42" x="243" y="57" width="72" height="22"/>
+				<textElement>
+					<font size="15" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE.]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement uuid="b50551a1-e72d-4d0c-88e9-94886b6338a5" x="423" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="399" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="66b5c5de-8adf-4a02-8ffa-8634b8f4a0a0" x="40" y="19" width="68" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Admin No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1dd8b1e4-3757-4cb9-a0bd-0a0380292abf" x="242" y="19" width="54" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Name.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="7dda4b25-4741-4c17-85a6-f45448f9f6ef" x="108" y="34" width="119" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="416f7a75-20ee-4242-94e2-92645f8a3bc9" x="281" y="33" width="160" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="e581fbaf-f391-4c9b-ad42-699558c3ea3d" x="296" y="22" width="19" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="025cc04c-d046-4cdd-b91a-b5f77d308afc" x="315" y="22" width="33" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="607b0808-2dc1-4aee-836e-96017d242a14" x="348" y="22" width="36" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_middle_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4f5c4f07-b162-4e06-bc21-325895e018c6" x="386" y="22" width="27" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_last_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a20d6e89-99aa-4b5c-8c7d-0578dddbc7a3" x="109" y="22" width="34" height="20"/>
+				<textElement/>
+				<text><![CDATA[KUFH/]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e498b1f7-17d7-4637-9f85-1ca4f64d28ea" x="143" y="22" width="29" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deceased_tb_AdminNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a403f6ca-743e-4b57-8982-f4b5b465c554" x="161" y="22" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[/2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ab2a265-abe3-45a1-81b5-7c7d1ada722c" x="28" y="363" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[Next of Kin.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5ab9886c-bd23-4dfe-9dce-5385928e2911" x="88" y="382" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="03c2e756-6b52-4821-b126-79dbdf428728" x="196" y="363" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="88032678-d6f2-42df-9ad2-2a74debd545f" x="254" y="381" width="119" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="e40b02fd-4ba5-475e-aa1b-3e67d20b5d37" x="384" y="361" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement uuid="dcbec286-87a0-442d-9b94-95536a6ce778" x="421" y="361" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="2af4cec1-1809-419e-8fe1-35ae16338644" x="0" y="76" width="330" height="113"/>
+				<subreportParameter name="admin">
+					<subreportParameterExpression><![CDATA[$F{deceased_tb_AdminNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["E:\\EXTERNAL\\WORKSPACES\\Netbeans Projects\\KUFH\\src\\reports\\table.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

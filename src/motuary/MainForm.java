@@ -43,6 +43,7 @@ public class MainForm extends JFrame implements WindowListener {
     FsetupBusiness FormBussinessSetup;
     postmotermrequest requestpm;
     Postmotermcontrol pcontrol;
+    dispatching dsptch;
     Formadmin2 pm_grid;
     FrmAdmission FormAadmission;
 
@@ -508,9 +509,9 @@ public class MainForm extends JFrame implements WindowListener {
         NewJToolBar.setMargin(new Insets(0, 0, 0, 0));
 
         //Create a toolbar button
-        NewJToolBar.add(CreateJToolbarButton("Add new corpse details", "src/images/Add_new.png", "tooladd"));
+        NewJToolBar.add(CreateJToolbarButton("Add new corpse details", "src/images/Add_new.png", "tooladdtrial"));
 
-        NewJToolBar.add(CreateJToolbarButton("Dispatch", "src/images/dispatch.png", "tooladdtrial"));
+        NewJToolBar.add(CreateJToolbarButton("Dispatch", "src/images/dispatch.png", "dispatch"));
         NewJToolBar.add(CreateJToolbarButton("Body Viewing Bookings", "src/images/book.png", "toolEmp"));
         NewJToolBar.add(CreateJToolbarButton("Hearse Services", "src/images/hearse.png", "toolAss"));
         NewJToolBar.add(CreateJToolbarButton("Job card Record", "src/images/card.png", "toolHostel"));
@@ -820,6 +821,32 @@ public class MainForm extends JFrame implements WindowListener {
 
         //End verify if the form is already loaded
     }
+    protected void loaddispatch() throws SQLException {
+        //Verify if the form is already loaded
+        boolean AlreadyLoaded = isLoaded("dispatchfrm");
+        if (AlreadyLoaded == false) {
+            dsptch = new dispatching();
+            Desk1.add(dsptch);
+
+            //Load the p.m grid form
+            dsptch.setVisible(true);
+            dsptch.show();
+            try {
+                dsptch.setIcon(false);
+                dsptch.setSelected(true);
+            } catch (PropertyVetoException e) {
+            }
+            //End load the FormCustomer
+        } else {
+            try {
+                dsptch.setIcon(false);
+                dsptch.setSelected(true);
+            } catch (PropertyVetoException e) {
+            }
+        }
+
+        //End verify if the form is already loaded
+    }
 
     //Create action listener for JMenu
     ActionListener JMenuActionListener = new ActionListener() {
@@ -906,9 +933,9 @@ public class MainForm extends JFrame implements WindowListener {
     ActionListener JToolBarActionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             String srcObject = e.getActionCommand();
-            if (srcObject == "tooladd") {
+            if (srcObject == "dispatch") {
                 try {
-                    loadAdmissionForm();
+                    loaddispatch();
                 } catch (SQLException sqle) {
                     sqle.printStackTrace();
                 }
